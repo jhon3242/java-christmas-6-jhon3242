@@ -31,13 +31,8 @@ public class DiscountTest {
     @ParameterizedTest
     @MethodSource("dDayDiscountProvider")
     void dDayDiscount(DecemberDate date, Money expected) {
-        // given
-        DDayDiscount discount = new DDayDiscount();
+        Money actual = DDayDiscount.calculateDiscountAmount(date);
 
-        // when
-        Money actual = discount.calculateDiscountAmount(date);
-
-        // then
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -63,13 +58,8 @@ public class DiscountTest {
     @ParameterizedTest
     @MethodSource("weekendDiscountProvider")
     void weekendDiscount(Menus menus, DecemberDate date, Money expected) {
-        // given
-        WeekDiscount discount = new WeekDiscount();
+        Money actual = WeekDiscount.calculateDiscountAmount(date, menus);
 
-        // when
-        Money actual = discount.calculateDiscountAmount(date, menus);
-
-        // then
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -85,13 +75,8 @@ public class DiscountTest {
     @ParameterizedTest
     @MethodSource("weekdayDiscountProvider")
     void weekdayDiscount(Menus menus, DecemberDate date, Money expected) {
-        // given
-        WeekDiscount discount = new WeekDiscount();
+        Money actual = WeekDiscount.calculateDiscountAmount(date, menus);
 
-        // when
-        Money actual = discount.calculateDiscountAmount(date, menus);
-
-        // then
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -108,15 +93,9 @@ public class DiscountTest {
     @ParameterizedTest
     @MethodSource("specialDiscountProvider")
     void specialDiscount(DecemberDate date, Money expected) {
-        // given
-        SpecialDiscount discount = new SpecialDiscount();
+        Money actual = SpecialDiscount.calculateDiscountAmount(date);
 
-        // when
-        Money actual = discount.calculateDiscountAmount(date);
-
-        // then
         assertThat(actual).isEqualTo(expected);
-
     }
 
     static Stream<Arguments> specialDiscountProvider() {

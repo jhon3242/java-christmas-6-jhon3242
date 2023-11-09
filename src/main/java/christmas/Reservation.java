@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.discount.DDayDiscount;
 import java.util.Map;
 
 public class Reservation {
@@ -7,6 +8,7 @@ public class Reservation {
     private DecemberDate decemberDate;
 
     public Money calculateTotalDiscountAmount() {
+        DDayDiscount
         return null;
     }
 

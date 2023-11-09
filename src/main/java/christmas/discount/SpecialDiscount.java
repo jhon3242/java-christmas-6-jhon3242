@@ -15,14 +15,14 @@ public class SpecialDiscount {
         new DecemberDate(31)
     );
 
-    public Money calculateDiscountAmount(DecemberDate date) {
+    public static Money calculateDiscountAmount(DecemberDate date) {
         if (isSpecialDate(date)) {
             return new Money(DISCOUNT_AMOUNT);
         }
         return new Money(0);
     }
 
-    private boolean isSpecialDate(DecemberDate date) {
+    private static boolean isSpecialDate(DecemberDate date) {
         return specialDates.contains(date);
     }
 }
