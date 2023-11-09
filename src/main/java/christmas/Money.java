@@ -2,12 +2,7 @@ package christmas;
 
 import java.util.Objects;
 
-public class Money {
-    private int amount;
-
-    public Money(int amount) {
-        this.amount = amount;
-    }
+public record Money(int amount) {
 
     public static Money sum(Money money1, Money money2) {
         return new Money(money1.amount + money2.amount);

@@ -2,12 +2,7 @@ package christmas;
 
 import java.util.Map;
 
-public class Menus {
-    private Map<Menu, Integer> menuRepository;
-
-    public Menus(Map<Menu, Integer> menuRepository) {
-        this.menuRepository = menuRepository;
-    }
+public record Menus(Map<Menu, Integer> menuRepository) {
 
     public int findTotalCountByFoodType(FoodType foodType) {
         return menuRepository.keySet()
