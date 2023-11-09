@@ -17,6 +17,10 @@ public class Reservation {
     }
 
     public Money calculateTotalDiscountMoney() {
+        Money totalMoney = calculateTotalMoney();
+        if (totalMoney.isLessThan(new Money(10000))) {
+            return new Money(0);
+        }
         List<Money> discountMoneys = new ArrayList<>(List.of(
                 DDayDiscount.calculateDiscountAmount(decemberDate),
                 WeekDiscount.calculateDiscountAmount(decemberDate, menus),

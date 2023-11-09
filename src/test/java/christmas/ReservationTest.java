@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +39,20 @@ public class ReservationTest {
         menuIntegerMap.put(Menu.ICE_CREAM, 2);
         menuIntegerMap.put(Menu.CHAMPAGNE, 1);
         Money expected = new Money(1800 + 2023 * 5 + 25000);
+
+        assertThat(reservation.calculateTotalDiscountMoney()).isEqualTo(expected);
+    }
+
+    @DisplayName("구입 금액이 10,000원을 넘지 않으면 할인 금액은 0원이다.")
+    @Test
+    void lessThanMinDiscountPrice() {
+        Map<Menu, Integer> menuIntegerMap = new HashMap<>();
+        Menus menus = new Menus(menuIntegerMap);
+        DecemberDate date = new DecemberDate(3);
+        Reservation reservation = new Reservation(menus, date);
+
+        menuIntegerMap.put(Menu.ICE_CREAM, 1);
+        Money expected = new Money(0);
 
         assertThat(reservation.calculateTotalDiscountMoney()).isEqualTo(expected);
     }
