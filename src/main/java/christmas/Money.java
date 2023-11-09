@@ -33,4 +33,7 @@ public record Money(int amount) {
         return Objects.hash(amount);
     }
 
+    public Money minus(Money money) {
+        return new Money(amount - money.amount);
+    }
 }

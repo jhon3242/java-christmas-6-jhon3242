@@ -44,6 +44,6 @@ public class Reservation {
     }
 
     public Money calculateTotalDiscountedMoney() {
-        return null;
+        return calculateTotalMoney().minus(calculateTotalDiscountMoney());
     }
 }
