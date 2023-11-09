@@ -4,10 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.discount.DDayDiscount;
 import christmas.discount.WeekDiscount;
-import java.awt.Menu;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -46,13 +48,18 @@ public class DiscountTest {
         );
     }
 
+    @DisplayName("주말에만 메 하나 당 2023원 할인이 적용된다.")
     @ParameterizedTest
-    @MethodSource
-    void weekendDiscount(Menus menus, Money expected) {
+    @MethodSource("weekDiscountProvider")
+    void weekendDiscount(DecemberDate date, Money expected) {
         // given
         WeekDiscount discount = new WeekDiscount();
-
+        Map<Menu, Integer> menuRepository = new HashMap<>();
+        menuRepository.put(Menu.T_BORN_STAKE, 1);
+        menuRepository.put(Menu.BBQ_RIBS, 1);
+        menuRepository.put(Menu.MUSHROOM_CREAM_SOUP, 1);
         // when
+        Menus menus = new Menus(menuRepository);
         Money actual = discount.calculateDiscountAmount(date, menus);
 
         // then
@@ -61,8 +68,9 @@ public class DiscountTest {
 
     static Stream<Arguments> weekDiscountProvider() {
         return Stream.of(
-                Arguments.of(Menus, new Money(2023)),
-                Arguments.of(new Menus(List.of(Menu.CHOCO_CAKE, )), new Money(2023)),
-        )
+                Arguments.of(new DecemberDate(1), new Money(2023 * 2)),
+                Arguments.of(new DecemberDate(2), new Money(2023 * 2)),
+                Arguments.of(new DecemberDate(3), new Money(0)),
+                Arguments.of(new DecemberDate(4), new Money(0)));
     }
 }
