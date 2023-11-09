@@ -2,6 +2,10 @@ package christmas;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.discount.DDayDiscount;
+import christmas.discount.WeekDiscount;
+import java.awt.Menu;
+import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,5 +44,25 @@ public class DiscountTest {
                 Arguments.of(new DecemberDate(30), new Money(0)),
                 Arguments.of(new DecemberDate(31), new Money(0))
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    void weekendDiscount(Menus menus, Money expected) {
+        // given
+        WeekDiscount discount = new WeekDiscount();
+
+        // when
+        Money actual = discount.calculateDiscountAmount(date, menus);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> weekDiscountProvider() {
+        return Stream.of(
+                Arguments.of(Menus, new Money(2023)),
+                Arguments.of(new Menus(List.of(Menu.CHOCO_CAKE, )), new Money(2023)),
+        )
     }
 }

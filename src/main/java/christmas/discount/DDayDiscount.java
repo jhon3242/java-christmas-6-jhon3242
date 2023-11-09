@@ -1,4 +1,7 @@
-package christmas;
+package christmas.discount;
+
+import christmas.DecemberDate;
+import christmas.Money;
 
 public class DDayDiscount{
     private static final int DISCOUNT_AMOUNT = 1000;
