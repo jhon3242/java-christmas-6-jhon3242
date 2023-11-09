@@ -3,6 +3,7 @@ package christmas;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.discount.DDayDiscount;
+import christmas.discount.SpecialDiscount;
 import christmas.discount.WeekDiscount;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,14 @@ public class DiscountTest {
     // TODO FIxture 도입
     private static final DecemberDate WEEKEND = new DecemberDate(1);
     private static final DecemberDate WEEKDAY = new DecemberDate(3);
+
+    private static Menus makeMenusByList(List<Menu> menus) {
+        Map<Menu, Integer> menuRepository = new HashMap<>();
+        menus.forEach(menu ->
+                menuRepository.put(menu, menuRepository.getOrDefault(menu, 0) + 1)
+        );
+        return new Menus(menuRepository);
+    }
 
     @DisplayName("크리스마스 디데이 이벤트 할인 금액 계산이 문제 없다.")
     @ParameterizedTest
@@ -95,11 +104,33 @@ public class DiscountTest {
                 ));
     }
 
-    private static Menus makeMenusByList(List<Menu> menus) {
-        Map<Menu, Integer> menuRepository = new HashMap<>();
-        menus.forEach(menu ->
-                menuRepository.put(menu, menuRepository.getOrDefault(menu, 0) + 1)
+    @DisplayName("이벤트 달력에 별이 있는 날에는 1000원 할인을 해준다.")
+    @ParameterizedTest
+    @MethodSource("specialDiscountProvider")
+    void specialDiscount(DecemberDate date, Money expected) {
+        // given
+        SpecialDiscount discount = new SpecialDiscount();
+
+        // when
+        Money actual = discount.calculateDiscountAmount(date);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+
+    }
+
+    static Stream<Arguments> specialDiscountProvider() {
+        return Stream.of(
+                Arguments.of(new DecemberDate(3), new Money(1000)),
+                Arguments.of(new DecemberDate(10), new Money(1000)),
+                Arguments.of(new DecemberDate(17), new Money(1000)),
+                Arguments.of(new DecemberDate(24), new Money(1000)),
+                Arguments.of(new DecemberDate(25), new Money(1000)),
+                Arguments.of(new DecemberDate(31), new Money(1000)),
+                Arguments.of(new DecemberDate(1), new Money(0)),
+                Arguments.of(new DecemberDate(2), new Money(0)),
+                Arguments.of(new DecemberDate(29), new Money(0)),
+                Arguments.of(new DecemberDate(30), new Money(0))
         );
-        return new Menus(menuRepository);
     }
 }
