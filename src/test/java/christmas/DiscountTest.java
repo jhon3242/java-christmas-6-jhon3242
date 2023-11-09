@@ -66,8 +66,8 @@ public class DiscountTest {
 
     static Stream<Arguments> weekendDiscountProvider() {
         return Stream.of(
-                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.T_BORN_STAKE)), WEEKEND,
-                        new Money(2023 * 2)),
+                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.CHOCO_CAKE)), WEEKEND,
+                        new Money(2023)),
                 Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.T_BORN_STAKE)), WEEKDAY,
                         new Money(0)));
     }
@@ -88,9 +88,9 @@ public class DiscountTest {
 
     static Stream<Arguments> weekdayDiscountProvider() {
         return Stream.of(
-                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.T_BORN_STAKE)), WEEKEND,
+                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.CHOCO_CAKE, Menu.ICE_CREAM)), WEEKEND,
                         new Money(0)),
-                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.T_BORN_STAKE)), WEEKDAY,
+                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.CHOCO_CAKE, Menu.T_BORN_STAKE)), WEEKDAY,
                         new Money(2023)
                 ));
     }
