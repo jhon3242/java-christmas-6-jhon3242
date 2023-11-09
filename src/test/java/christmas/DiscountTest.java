@@ -72,6 +72,29 @@ public class DiscountTest {
                         new Money(0)));
     }
 
+    @DisplayName("평일에만 디저트 메뉴 하나 당 2023원 할인이 적용된다.")
+    @ParameterizedTest
+    @MethodSource("weekdayDiscountProvider")
+    void weekdayDiscount(Menus menus, DecemberDate date, Money expected) {
+        // given
+        WeekDiscount discount = new WeekDiscount();
+
+        // when
+        Money actual = discount.calculateDiscountAmount(date, menus);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> weekdayDiscountProvider() {
+        return Stream.of(
+                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.T_BORN_STAKE)), WEEKEND,
+                        new Money(0)),
+                Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.T_BORN_STAKE)), WEEKDAY,
+                        new Money(2023)
+                ));
+    }
+
     private static Menus makeMenusByList(List<Menu> menus) {
         Map<Menu, Integer> menuRepository = new HashMap<>();
         menus.forEach(menu ->
