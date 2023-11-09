@@ -12,7 +12,7 @@ public enum Menu {
     ICE_CREAM("아이스크림", FoodType.DESSERT, new Money(5000)),
     ZERO_COKE("제로콜라", FoodType.DRINK, new Money(3000)),
     RED_WINE("레드와인", FoodType.DRINK, new Money(60000)),
-    CHAMPAGNE("샴페인", FoodType.DRINK, new Money(250000))
+    CHAMPAGNE("샴페인", FoodType.DRINK, new Money(25000))
     ;
     private final String name;
     private final FoodType foodType;
@@ -26,5 +26,17 @@ public enum Menu {
 
     public boolean isSameType(FoodType foodType) {
         return this.foodType == foodType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public FoodType getFoodType() {
+        return foodType;
+    }
+
+    public Money getPrice() {
+        return price;
     }
 }

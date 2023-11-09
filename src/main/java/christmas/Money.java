@@ -8,6 +8,10 @@ public record Money(int amount) {
         return new Money(money1.amount + money2.amount);
     }
 
+    public boolean isMoreOrEqualThan(Money source) {
+        return amount >= source.amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
