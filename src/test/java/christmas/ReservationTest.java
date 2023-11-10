@@ -14,7 +14,7 @@ public class ReservationTest {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(menus, date);
+        Reservation reservation = new Reservation(date, menus);
 
         menuIntegerMap.put(Menu.MUSHROOM_CREAM_SOUP, 2);
         menuIntegerMap.put(Menu.SEA_FOOD_PASTA, 5);
@@ -31,7 +31,7 @@ public class ReservationTest {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(9);
-        Reservation reservation = new Reservation(menus, date);
+        Reservation reservation = new Reservation(date, menus);
 
         menuIntegerMap.put(Menu.MUSHROOM_CREAM_SOUP, 2);
         menuIntegerMap.put(Menu.SEA_FOOD_PASTA, 5);
@@ -49,7 +49,7 @@ public class ReservationTest {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(menus, date);
+        Reservation reservation = new Reservation(date, menus);
 
         menuIntegerMap.put(Menu.ICE_CREAM, 1);
         Money expected = new Money(0);
@@ -63,7 +63,7 @@ public class ReservationTest {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(menus, date);
+        Reservation reservation = new Reservation(date, menus);
 
         menuIntegerMap.put(Menu.MUSHROOM_CREAM_SOUP, 2);
         menuIntegerMap.put(Menu.T_BORN_STAKE, 2);
@@ -80,7 +80,7 @@ public class ReservationTest {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(9);
-        Reservation reservation = new Reservation(menus, date);
+        Reservation reservation = new Reservation(date, menus);
 
         menuIntegerMap.put(Menu.MUSHROOM_CREAM_SOUP, 2);
         menuIntegerMap.put(Menu.CAESAR_SALAD, 3);
@@ -98,7 +98,7 @@ public class ReservationTest {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(menus, date);
+        Reservation reservation = new Reservation(date, menus);
 
         menuIntegerMap.put(Menu.ICE_CREAM, 1);
         Money expected = Menu.ICE_CREAM.getPrice();

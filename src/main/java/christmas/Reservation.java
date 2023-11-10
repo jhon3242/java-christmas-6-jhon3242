@@ -8,12 +8,12 @@ import java.util.List;
 
 public class Reservation {
     public static final Money MIN_PRESENTATION_MONEY = new Money(120000);
-    private Menus menus;
     private DecemberDate decemberDate;
+    private Menus menus;
 
-    public Reservation(Menus menus, DecemberDate decemberDate) {
-        this.menus = menus;
+    public Reservation(DecemberDate decemberDate, Menus menus) {
         this.decemberDate = decemberDate;
+        this.menus = menus;
     }
 
     public Money calculateTotalDiscountMoney() {

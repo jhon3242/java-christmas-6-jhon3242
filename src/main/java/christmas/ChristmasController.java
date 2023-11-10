@@ -8,8 +8,11 @@ public class ChristmasController {
         OutputView.printMessage("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
         DecemberDate reserveDate = initReservationDate();
         Menus menus = initMenus();
+        Reservation reservation = new Reservation(reserveDate, menus);
         OutputView.printMessage("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
         OutputView.printMenus(menus);
+        OutputView.printBeforeDiscountPrice(reservation.calculateTotalMoney().amount());
+
     }
 
     private static DecemberDate initReservationDate() {
