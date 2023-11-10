@@ -32,11 +32,15 @@ public class OutputView {
 
     public static void printBeforeDiscountPrice(Money price) {
         System.out.println("<할인 전 총주문 금액>");
-        printMoney(price);
+        printMoney(price, false);
         System.out.println();
     }
 
-    private static void printMoney(Money money) {
+    private static void printMoney(Money money, boolean isMinus) {
+        boolean isNotZero = !Objects.equals(money.amount(), 0);
+        if (isNotZero && isMinus) {
+            System.out.print("-");
+        }
         System.out.println(MONEY_FORMAT.format(money.amount()));
     }
 
@@ -65,5 +69,10 @@ public class OutputView {
 
     private static boolean isNoDiscount(Map<String, Money> discountLog) {
         return discountLog.size() == 0;
+    }
+
+    public static void printTotalDiscountMoney(Money calculateTotalDiscountMoney) {
+        System.out.println("<총 할인 금액>");
+        printMoney(calculateTotalDiscountMoney, true);
     }
 }

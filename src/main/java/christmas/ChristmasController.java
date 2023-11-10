@@ -18,7 +18,7 @@ public class ChristmasController {
         OutputView.printGift(reservation.calculateGift());
 
         OutputView.printDiscountLogs(reservation.getDiscountRepository());
-
+        OutputView.printTotalDiscountMoney(reservation.calculateTotalDiscountMoney());
     }
 
 
