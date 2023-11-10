@@ -1,5 +1,6 @@
 package christmas;
 
+import java.util.Collections;
 import java.util.Map;
 
 public record Menus(Map<Menu, Integer> menuRepository) {
@@ -21,5 +22,10 @@ public record Menus(Map<Menu, Integer> menuRepository) {
                 .stream()
                 .map(Menu::getPrice)
                 .reduce(new Money(0), Money::sum);
+    }
+
+    @Override
+    public Map<Menu, Integer> menuRepository() {
+        return Collections.unmodifiableMap(menuRepository);
     }
 }
