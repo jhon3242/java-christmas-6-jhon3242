@@ -1,6 +1,8 @@
 package christmas.view;
 
+import christmas.Menu;
 import christmas.Menus;
+import christmas.Money;
 import java.text.DecimalFormat;
 
 public class OutputView {
@@ -17,12 +19,21 @@ public class OutputView {
     public static void printMenus(Menus menus) {
         System.out.println("<주문 메뉴>");
         menus.menuRepository()
-                        .forEach((menu, count) -> System.out.printf("%s - %d개\n", menu.getName(), count));
+                        .forEach(OutputView::printMenu);
         System.out.println();
     }
 
-    public static void printBeforeDiscountPrice(int price) {
+    private static void printMenu(Menu menu, int count) {
+        System.out.printf("%s - %d개\n", menu.getName(), count);
+    }
+
+    public static void printBeforeDiscountPrice(Money price) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(MONEY_FORMAT.format(price));
+        printMoney(price);
+        System.out.println();
+    }
+
+    private static void printMoney(Money money) {
+        System.out.println(MONEY_FORMAT.format(money));
     }
 }
