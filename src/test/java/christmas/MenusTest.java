@@ -9,7 +9,7 @@ public class MenusTest {
 
     @DisplayName("메뉴의 형식이 올바른 경우 예외가 발생하지 않는다.")
     @ParameterizedTest
-    @ValueSource(strings = {"타파스-1,제로콜라-1", "타파스-1", "티본스테이크-1,바비큐립-1,초코케이스-10,제로콜라-23"})
+    @ValueSource(strings = {"타파스-1,제로콜라-1", "타파스-1", "티본스테이크-1,바비큐립-1,초코케이크-10,제로콜라-23"})
     void menusValidFormat(String inputValue) {
         Assertions.assertThatNoException().isThrownBy(() -> {
             Menus.createByString(inputValue);

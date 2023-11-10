@@ -1,14 +1,16 @@
 package christmas;
 
+import java.util.Arrays;
+
 public enum Menu {
     MUSHROOM_CREAM_SOUP("양송이수프", FoodType.APPETIZER, new Money(6000)),
     TAPAS("타파스", FoodType.APPETIZER, new Money(5500)),
     CAESAR_SALAD("시저샐러드", FoodType.APPETIZER, new Money(8000)),
     T_BORN_STAKE("티본스테이크", FoodType.MAIN_COURSE, new Money(55000)),
-    BBQ_RIBS("바베큐립", FoodType.MAIN_COURSE, new Money(54000)),
-    SEA_FOOD_PASTA("해물파스타", FoodType.MAIN_COURSE, new Money(35000)),
+    BBQ_RIBS("바비큐립", FoodType.MAIN_COURSE, new Money(54000)),
+    SEA_FOOD_PASTA("해산물파스타", FoodType.MAIN_COURSE, new Money(35000)),
     CHRISTMAS_PASTA("크리스마스파스타", FoodType.MAIN_COURSE, new Money(25000)),
-    CHOCO_CAKE("초콜릿케이크", FoodType.DESSERT, new Money(15000)),
+    CHOCO_CAKE("초코케이크", FoodType.DESSERT, new Money(15000)),
     ICE_CREAM("아이스크림", FoodType.DESSERT, new Money(5000)),
     ZERO_COKE("제로콜라", FoodType.DRINK, new Money(3000)),
     RED_WINE("레드와인", FoodType.DRINK, new Money(60000)),
@@ -22,6 +24,13 @@ public enum Menu {
         this.name = name;
         this.foodType = foodType;
         this.price = price;
+    }
+
+    public static Menu findByName(String name) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.name.equals(name))
+                .findFirst()
+                .orElse(null);
     }
 
     public boolean isSameType(FoodType foodType) {
