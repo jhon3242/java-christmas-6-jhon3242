@@ -20,7 +20,7 @@ public record Menus(Map<Menu, Integer> menuRepository) {
     public Money calculateTotalPrice() {
         return menuRepository.keySet()
                 .stream()
-                .map(Menu::getPrice)
+                .map((meun) -> meun.getPrice().multiply(menuRepository.get(meun)))
                 .reduce(new Money(0), Money::sum);
     }
 

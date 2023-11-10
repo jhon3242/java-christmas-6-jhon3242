@@ -36,4 +36,8 @@ public record Money(int amount) {
     public Money minus(Money money) {
         return new Money(amount - money.amount);
     }
+
+    public Money multiply(int count) {
+        return new Money(amount * count);
+    }
 }

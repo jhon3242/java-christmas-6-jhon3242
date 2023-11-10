@@ -72,7 +72,14 @@ public class OutputView {
     }
 
     public static void printTotalDiscountMoney(Money calculateTotalDiscountMoney) {
-        System.out.println("<총 할인 금액>");
+        System.out.println("<총혜택 금액>");
         printMoney(calculateTotalDiscountMoney, true);
+        System.out.println();
+    }
+
+    public static void printFinalPaymentMoney(Money calculateTotalDiscountedMoney) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        printMoney(calculateTotalDiscountedMoney, false);
+        System.out.println();
     }
 }
