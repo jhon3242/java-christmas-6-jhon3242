@@ -71,15 +71,22 @@ public class OutputView {
         return discountLog.size() == 0;
     }
 
-    public static void printTotalDiscountMoney(Money calculateTotalDiscountMoney) {
+    public static void printTotalDiscountMoney(Money totalDiscountMoney) {
         System.out.println("<총혜택 금액>");
-        printMoney(calculateTotalDiscountMoney, true);
+        printMoney(totalDiscountMoney, true);
         System.out.println();
     }
 
-    public static void printFinalPaymentMoney(Money calculateTotalDiscountedMoney) {
+    public static void printFinalPaymentMoney(Money finalPaymentMoney) {
         System.out.println("<할인 후 예상 결제 금액>");
-        printMoney(calculateTotalDiscountedMoney, false);
+        printMoney(finalPaymentMoney, false);
+        System.out.println();
+    }
+
+
+    public static void printEventBedge(String eventBadge) {
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(eventBadge);
         System.out.println();
     }
 }

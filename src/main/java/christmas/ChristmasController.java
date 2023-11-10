@@ -20,6 +20,7 @@ public class ChristmasController {
         OutputView.printDiscountLogs(reservation.getDiscountRepository());
         OutputView.printTotalDiscountMoney(reservation.calculateTotalDiscountMoney());
         OutputView.printFinalPaymentMoney(reservation.calculateTotalDiscountedMoney());
+        OutputView.printEventBedge(reservation.calculateEventBadge());
     }
 
 
