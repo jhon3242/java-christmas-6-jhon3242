@@ -46,4 +46,12 @@ public class Reservation {
     public Money calculateTotalDiscountedMoney() {
         return calculateTotalMoney().minus(calculateTotalDiscountMoney());
     }
+
+    public Menu calculateGift() {
+        Money totalMoney = calculateTotalMoney();
+        if (totalMoney.isMoreOrEqualThan(MIN_PRESENTATION_MONEY)) {
+            return Menu.CHAMPAGNE;
+        }
+        return null;
+    }
 }

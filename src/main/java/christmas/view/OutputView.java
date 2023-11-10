@@ -4,6 +4,7 @@ import christmas.Menu;
 import christmas.Menus;
 import christmas.Money;
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 public class OutputView {
     private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("###,###원");
@@ -34,6 +35,16 @@ public class OutputView {
     }
 
     private static void printMoney(Money money) {
-        System.out.println(MONEY_FORMAT.format(money));
+        System.out.println(MONEY_FORMAT.format(money.amount()));
+    }
+
+    public static void printGift(Menu gift) {
+        System.out.println("<증정 메뉴>");
+        if (Objects.isNull(gift)) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
+        printMenu(gift, 1);
     }
 }

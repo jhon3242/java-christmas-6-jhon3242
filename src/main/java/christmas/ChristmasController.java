@@ -12,7 +12,7 @@ public class ChristmasController {
         OutputView.printMessage("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
         OutputView.printMenus(menus);
         OutputView.printBeforeDiscountPrice(reservation.calculateTotalMoney());
-
+        OutputView.printGift(reservation.calculateGift());
 
     }
 
