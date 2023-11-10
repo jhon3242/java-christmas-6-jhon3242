@@ -2,12 +2,12 @@ package christmas;
 
 import christmas.view.InputView;
 import christmas.view.OutputView;
-import java.util.function.Supplier;
 
-public class ReservationController {
+public class ChristmasController {
     public static void run() {
         OutputView.printMessage("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
         DecemberDate reserveDate = initReservationDate();
+        Menus menus = initMenus();
         OutputView.printMessage(reserveDate.toString());
     }
 
@@ -17,6 +17,15 @@ public class ReservationController {
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return initReservationDate();
+        }
+    }
+
+    private static Menus initMenus() {
+        try {
+            return Menus.createByString(InputView.readMenu());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return initMenus();
         }
     }
 
