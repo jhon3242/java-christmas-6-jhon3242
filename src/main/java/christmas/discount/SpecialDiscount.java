@@ -5,6 +5,7 @@ import christmas.Money;
 import java.util.List;
 
 public class SpecialDiscount {
+    public static final String NAME = "특별 할인";
     private static final int DISCOUNT_AMOUNT = 1000;
     private static final List<DecemberDate> specialDates = List.of(
         new DecemberDate(3),

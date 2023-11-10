@@ -4,6 +4,7 @@ import christmas.DecemberDate;
 import christmas.Money;
 
 public class DDayDiscount{
+    public static final String NAME = "크리스마스 디데이 할인";
     private static final int DISCOUNT_AMOUNT = 1000;
     private static final DecemberDate startDate = new DecemberDate(1);
     private static final DecemberDate endDate = new DecemberDate(25);

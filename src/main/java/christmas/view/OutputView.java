@@ -4,6 +4,8 @@ import christmas.Menu;
 import christmas.Menus;
 import christmas.Money;
 import java.text.DecimalFormat;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 
 public class OutputView {
@@ -14,7 +16,7 @@ public class OutputView {
     }
 
     public static void printException(IllegalArgumentException exception) {
-        System.out.println("[ERROR] : " + exception.getMessage());
+        System.out.println("[ERROR] " + exception.getMessage());
     }
 
     public static void printMenus(Menus menus) {
@@ -46,5 +48,22 @@ public class OutputView {
             return;
         }
         printMenu(gift, 1);
+        System.out.println();
+    }
+
+    public static void printDiscountLogs(Map<String, Money> discountLog) {
+        System.out.println("<혜택 내역>");
+        if (isNoDiscount(discountLog)) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
+        discountLog.forEach(
+                (key, discount) -> System.out.printf("%s: -%s\n", key, MONEY_FORMAT.format(discount.amount())));
+        System.out.println();
+    }
+
+    private static boolean isNoDiscount(Map<String, Money> discountLog) {
+        return discountLog.size() == 0;
     }
 }

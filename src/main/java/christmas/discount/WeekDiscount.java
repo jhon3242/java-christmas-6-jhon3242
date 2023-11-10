@@ -27,4 +27,11 @@ public class WeekDiscount {
         }
         return new Money(0);
     }
+
+    public static String getNameByDate(DecemberDate date) {
+        if (date.isWeekend()) {
+            return "주말 할인";
+        }
+        return "평일 할인";
+    }
 }
