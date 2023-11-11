@@ -2,7 +2,7 @@ package christmas;
 
 import christmas.message.ExceptionMessage;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -13,9 +13,11 @@ public class MenusParser {
     private static final Pattern pattern = Pattern.compile(FORMAT_MENU_ORDER);
     private static final int MAX_MENU_COUNT = 20;
     private static final String DELIMITER_MENU_ORDER = ",";
+    public static final int NAME_INDEX = 1;
+    public static final int COUNT_INDEX = 2;
 
     public static Map<Menu, Integer> parse(String inputValue) {
-        Map<Menu, Integer> orderRepository = new HashMap<>();
+        Map<Menu, Integer> orderRepository = new EnumMap<>(Menu.class);
         Arrays.stream(inputValue.split(DELIMITER_MENU_ORDER))
                         .forEach(menuString -> addMenuToOrderRepository(orderRepository, menuString));
         validateOnlyDrink(orderRepository);
@@ -23,20 +25,21 @@ public class MenusParser {
         return orderRepository;
     }
 
-    private static void addMenuToOrderRepository(Map<Menu, Integer> result, String menuString) {
+    private static void addMenuToOrderRepository(Map<Menu, Integer> orderRepository, String menuString) {
         Matcher matcher = pattern.matcher(menuString);
         validateFormat(matcher);
-        Menu menu = Menu.findByName(matcher.group(1));
-        validateMenu(result, menu);
-        int count = Integer.parseInt(matcher.group(2));
+        Menu menu = Menu.findByName(matcher.group(NAME_INDEX));
+        int count = Integer.parseInt(matcher.group(COUNT_INDEX));
+        validateMenu(orderRepository, menu);
         validateCount(count);
-        result.put(menu, count);
+        orderRepository.put(menu, count);
     }
 
     private static void validateFormat(Matcher matcher) {
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER);
+        if (matcher.matches()) {
+            return;
         }
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER);
     }
 
     private static void validateMenu(Map<Menu, Integer> result, Menu menu) {

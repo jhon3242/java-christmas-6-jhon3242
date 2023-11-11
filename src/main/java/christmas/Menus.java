@@ -6,7 +6,8 @@ import java.util.Map;
 public record Menus(Map<Menu, Integer> menuRepository) {
 
     public static Menus createByString(String menuString) {
-        return new Menus(MenusParser.parse(menuString));
+        Map<Menu, Integer> menuRepository = MenusParser.parse(menuString);
+        return new Menus(menuRepository);
     }
 
     public int findTotalCountByFoodType(FoodType foodType) {

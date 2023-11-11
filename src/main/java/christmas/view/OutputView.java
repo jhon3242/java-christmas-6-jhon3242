@@ -103,7 +103,6 @@ public class OutputView {
         System.out.println();
     }
 
-
     public static void printEventBadge(String eventBadge) {
         System.out.println(OUTPUT_TITLE_EVENT_BADGE);
         System.out.println(eventBadge);

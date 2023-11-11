@@ -6,8 +6,6 @@ import christmas.message.ViewMessage;
 import java.util.Objects;
 
 public class InputView {
-
-
     public static int readDate() {
         System.out.println(ViewMessage.INPUT_DATE);
         return readInteger();
