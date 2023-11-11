@@ -24,8 +24,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class OutputView {
-
-
     public static void printWelcome() {
         System.out.println(OUTPUT_WELCOME_MESSAGE);
     }

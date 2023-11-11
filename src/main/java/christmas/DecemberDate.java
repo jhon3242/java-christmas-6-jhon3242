@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.message.ExceptionMessage;
 import java.util.List;
 
 public record DecemberDate(int dateAmount) {
@@ -13,7 +14,7 @@ public record DecemberDate(int dateAmount) {
 
     private void validateDate(int dateAmount) {
         if (isOutOfDateRange(dateAmount)) {
-            throw new IllegalArgumentException("12월의 날짜를 입력해주세요.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DATE);
         }
     }
 
