@@ -9,24 +9,28 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MenusParser {
-    public static final int MAX_MENU_COUNT = 20;
-    private static final Pattern pattern = Pattern.compile("([가-힣]+)-(\\d+)");
+    private static final String FORMAT_MENU_ORDER = "([가-힣]+)-(\\d+)";
+    private static final Pattern pattern = Pattern.compile(FORMAT_MENU_ORDER);
+    private static final int MAX_MENU_COUNT = 20;
+    private static final String DELIMITER_MENU_ORDER = ",";
 
     public static Map<Menu, Integer> parse(String inputValue) {
-        Map<Menu, Integer> result = new HashMap<>();
-        Arrays.stream(inputValue.split(","))
-                        .forEach(menuString -> {
-                            Matcher matcher = pattern.matcher(menuString);
-                            validateFormat(matcher);
-                            Menu menu = Menu.findByName(matcher.group(1));
-                            validateMenu(result, menu);
-                            int count = Integer.parseInt(matcher.group(2));
-                            validateCount(count);
-                            result.put(menu, count);
-                        });
-        validateOnlyDrink(result);
-        validateMaxMenuCount(result);
-        return result;
+        Map<Menu, Integer> orderRepository = new HashMap<>();
+        Arrays.stream(inputValue.split(DELIMITER_MENU_ORDER))
+                        .forEach(menuString -> addMenuToOrderRepository(orderRepository, menuString));
+        validateOnlyDrink(orderRepository);
+        validateMaxMenuCount(orderRepository);
+        return orderRepository;
+    }
+
+    private static void addMenuToOrderRepository(Map<Menu, Integer> result, String menuString) {
+        Matcher matcher = pattern.matcher(menuString);
+        validateFormat(matcher);
+        Menu menu = Menu.findByName(matcher.group(1));
+        validateMenu(result, menu);
+        int count = Integer.parseInt(matcher.group(2));
+        validateCount(count);
+        result.put(menu, count);
     }
 
     private static void validateFormat(Matcher matcher) {
