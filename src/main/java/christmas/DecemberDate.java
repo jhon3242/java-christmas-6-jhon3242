@@ -37,4 +37,5 @@ public record DecemberDate(int dateAmount) {
     public boolean isWeekday() {
         return !isWeekend();
     }
+
 }

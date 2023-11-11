@@ -149,7 +149,7 @@ BUILD SUCCESSFUL in 0s
 8,500원
  
 <증정 메뉴>
-없음
+없음ED
  
 <혜택 내역>
 없음

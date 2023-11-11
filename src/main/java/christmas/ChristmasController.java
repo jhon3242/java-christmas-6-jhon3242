@@ -4,25 +4,21 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class ChristmasController {
+
+
     public static void run() {
-        OutputView.printMessage("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+        OutputView.printWelcome();
+
         DecemberDate reserveDate = initReservationDate();
         Menus menus = initMenus();
         Reservation reservation = new Reservation(reserveDate, menus);
 
         reservation.calculateDiscount();
 
-        OutputView.printMessage("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
-        OutputView.printMenus(menus);
-        OutputView.printBeforeDiscountPrice(reservation.calculateTotalMoney());
-        OutputView.printGift(reservation.calculateGift());
-
-        OutputView.printDiscountLogs(reservation.getDiscountRepository());
-        OutputView.printTotalDiscountMoney(reservation.calculateTotalDiscountMoney());
-        OutputView.printFinalPaymentMoney(reservation.calculateTotalDiscountedMoney());
-        OutputView.printEventBedge(reservation.calculateEventBadge());
+        OutputView.printEventPreMessage(reserveDate);
+        OutputView.printOrderMenus(menus);
+        printDiscountInformation(reservation);
     }
-
 
     private static DecemberDate initReservationDate() {
         try {
@@ -40,6 +36,15 @@ public class ChristmasController {
             OutputView.printException(exception);
             return initMenus();
         }
+    }
+
+    private static void printDiscountInformation(Reservation reservation) {
+        OutputView.printBeforeDiscountPrice(reservation.calculateTotalMoney());
+        OutputView.printGift(reservation.calculateGift());
+        OutputView.printDiscountLogs(reservation.getDiscountRepository());
+        OutputView.printTotalDiscountMoney(reservation.calculateTotalDiscountMoney());
+        OutputView.printFinalPrice(reservation.calculateTotalDiscountedMoney());
+        OutputView.printEventBadge(reservation.calculateEventBadge());
     }
 
 //    private static <T> T inputValue(Supplier<T> supplier) {
