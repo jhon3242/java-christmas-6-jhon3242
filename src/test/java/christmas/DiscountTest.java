@@ -3,6 +3,7 @@ package christmas;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.discount.DDayDiscount;
+import christmas.discount.GiftDiscount;
 import christmas.discount.SpecialDiscount;
 import christmas.discount.WeekDiscount;
 import java.util.HashMap;
@@ -110,6 +111,27 @@ public class DiscountTest {
                 Arguments.of(new DecemberDate(2), new Money(0)),
                 Arguments.of(new DecemberDate(29), new Money(0)),
                 Arguments.of(new DecemberDate(30), new Money(0))
+        );
+    }
+
+    @DisplayName("증정 할인 계산에 문제가 없다.")
+    @ParameterizedTest
+    @MethodSource("giftDiscountProvider")
+    void giftDiscount(Money totalPrize, Money expected) {
+        Money actual = GiftDiscount.calculateDiscountAmount(totalPrize);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> giftDiscountProvider() {
+        return Stream.of(
+                Arguments.of(new Money(10000), null),
+                Arguments.of(new Money(20000), null),
+                Arguments.of(new Money(50000), null),
+                Arguments.of(new Money(100000), null),
+                Arguments.of(new Money(119999), null),
+                Arguments.of(new Money(120000), new Money(25000)),
+                Arguments.of(new Money(200000), new Money(25000))
         );
     }
 }
