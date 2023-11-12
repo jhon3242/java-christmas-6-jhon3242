@@ -2,7 +2,6 @@ package christmas.discount;
 
 import christmas.Menu;
 import christmas.Money;
-import java.util.Objects;
 
 public class GiftDiscount {
     public static final String NAME = "증정 이벤트";
