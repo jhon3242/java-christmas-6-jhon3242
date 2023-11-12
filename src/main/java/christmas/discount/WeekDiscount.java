@@ -5,7 +5,7 @@ import christmas.FoodType;
 import christmas.Menus;
 import christmas.Money;
 
-public class WeekDiscount {
+public class WeekDiscount implements Discount {
     private static final int WEEKEND_DISCOUNT_AMOUNT = 2023;
 
     public static Money calculateDiscountAmount(DecemberDate date, Menus menus) {

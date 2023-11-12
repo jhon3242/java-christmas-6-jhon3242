@@ -13,7 +13,6 @@ public class ChristmasController {
         Menus menus = initMenus();
         Reservation reservation = new Reservation(reserveDate, menus);
 
-        reservation.calculateDiscount();
 
         OutputView.printEventPreMessage(reserveDate);
         OutputView.printOrderMenus(menus);

@@ -19,6 +19,7 @@ import christmas.DecemberDate;
 import christmas.Menu;
 import christmas.Menus;
 import christmas.Money;
+import christmas.discount.DiscountRepository;
 import christmas.message.ExceptionMessage;
 import java.util.Map;
 import java.util.Objects;
@@ -72,23 +73,20 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printDiscountLogs(Map<String, Money> discountLog) {
+    public static void printDiscountLogs(DiscountRepository discountRepository) {
         System.out.println(OUTPUT_TITLE_DISCOUNT);
-        if (isNoDiscount(discountLog)) {
+        if (discountRepository.isNotDiscount()) {
             System.out.println(NOTHING);
             System.out.println();
             return;
         }
-        discountLog.forEach(OutputView::printDiscountLog);
+        discountRepository.getDiscountRepository()
+                .forEach(OutputView::printDiscountLog);
         System.out.println();
     }
 
     private static void printDiscountLog(String key, Money discount) {
         System.out.printf(OUTPUT_FORMAT_DISCOUNT, key, OUTPUT_FORMAT_MONEY.format(discount.amount()));
-    }
-
-    private static boolean isNoDiscount(Map<String, Money> discountLog) {
-        return discountLog.size() == 0;
     }
 
     public static void printTotalDiscountMoney(Money totalDiscountMoney) {
