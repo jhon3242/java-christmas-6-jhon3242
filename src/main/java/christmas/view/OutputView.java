@@ -86,6 +86,9 @@ public class OutputView {
     }
 
     private static void printDiscountLog(String key, Money discount) {
+        if (Objects.equals(discount, new Money(0))) {
+            return;
+        }
         System.out.printf(OUTPUT_FORMAT_DISCOUNT, key, OUTPUT_FORMAT_MONEY.format(discount.amount()));
     }
 

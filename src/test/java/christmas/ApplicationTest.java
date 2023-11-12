@@ -4,10 +4,16 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import christmas.discount.DDayDiscount;
+import christmas.discount.GiftDiscount;
+import christmas.discount.SpecialDiscount;
+import christmas.discount.WeekDiscount;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final DecemberDate WEEKEND = new DecemberDate(1);
+    private static final DecemberDate WEEKDAY = new DecemberDate(4);
 
     @Test
     void 모든_타이틀_출력() {
@@ -21,6 +27,76 @@ class ApplicationTest extends NsTest {
                 "<총혜택 금액>",
                 "<할인 후 예상 결제 금액>",
                 "<12월 이벤트 배지>"
+            );
+        });
+    }
+
+    @Test
+    void 오직_디데이_할인() {
+        assertSimpleTest(() -> {
+            run("4", "티본스테이크-1");
+
+            assertThat(output()).doesNotContain(
+                    SpecialDiscount.NAME,
+                    WeekDiscount.getNameByDate(WEEKEND),
+                    WeekDiscount.getNameByDate(WEEKDAY),
+                    GiftDiscount.NAME
+            );
+        });
+    }
+
+    @Test
+    void 오직_주말_할인() {
+        assertSimpleTest(() -> {
+            run("26", "티본스테이크-1");
+
+            assertThat(output()).doesNotContain(
+                    DDayDiscount.NAME,
+                    WeekDiscount.getNameByDate(WEEKDAY),
+                    SpecialDiscount.NAME,
+                    GiftDiscount.NAME
+            );
+        });
+    }
+
+    @Test
+    void 오직_평일_할인() {
+        assertSimpleTest(() -> {
+            run("26", "아이스크림-2");
+
+            assertThat(output()).doesNotContain(
+                    DDayDiscount.NAME,
+                    WeekDiscount.getNameByDate(WEEKEND),
+                    SpecialDiscount.NAME,
+                    GiftDiscount.NAME
+            );
+        });
+    }
+
+    @Test
+    void 오직_특별_할인() {
+        assertSimpleTest(() -> {
+            run("31", "티본스테이크-1");
+
+            assertThat(output()).doesNotContain(
+                    DDayDiscount.NAME,
+                    WeekDiscount.getNameByDate(WEEKDAY),
+                    WeekDiscount.getNameByDate(WEEKEND),
+                    GiftDiscount.NAME
+            );
+        });
+    }
+
+    @Test
+    void 오직_증정_할인() {
+        assertSimpleTest(() -> {
+            run("28", "티본스테이크-3");
+
+            assertThat(output()).doesNotContain(
+                    DDayDiscount.NAME,
+                    WeekDiscount.getNameByDate(WEEKDAY),
+                    WeekDiscount.getNameByDate(WEEKEND),
+                    SpecialDiscount.NAME
             );
         });
     }

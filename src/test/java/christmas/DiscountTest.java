@@ -125,11 +125,11 @@ public class DiscountTest {
 
     static Stream<Arguments> giftDiscountProvider() {
         return Stream.of(
-                Arguments.of(new Money(10000), null),
-                Arguments.of(new Money(20000), null),
-                Arguments.of(new Money(50000), null),
-                Arguments.of(new Money(100000), null),
-                Arguments.of(new Money(119999), null),
+                Arguments.of(new Money(10000), new Money(0)),
+                Arguments.of(new Money(20000), new Money(0)),
+                Arguments.of(new Money(50000), new Money(0)),
+                Arguments.of(new Money(100000), new Money(0)),
+                Arguments.of(new Money(119999), new Money(0)),
                 Arguments.of(new Money(120000), new Money(25000)),
                 Arguments.of(new Money(200000), new Money(25000))
         );

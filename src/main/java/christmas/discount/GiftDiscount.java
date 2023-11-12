@@ -11,7 +11,7 @@ public class GiftDiscount {
         if (totalPrize.isMoreOrEqualThan(MIN_PRESENTATION_MONEY)) {
             return Menu.CHAMPAGNE.getPrice();
         }
-        return null;
+        return new Money(0);
     }
 
     public static Menu getGift() {

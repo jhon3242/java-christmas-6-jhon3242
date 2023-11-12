@@ -36,13 +36,12 @@ public class DiscountRepository {
     public Money calculateTotalDiscountMoney() {
         return discountRepository.values()
                 .stream()
-                .reduce(Money::sum)
-                .orElse(new Money(0));
+                .reduce(new Money(0), Money::sum);
     }
 
     public Menu calculateGift() {
         Money money = discountRepository.get(GiftDiscount.NAME);
-        if (Objects.isNull(money)) {
+        if (Objects.equals(money, new Money(0))) {
             return null;
         }
         return GiftDiscount.getGift();
