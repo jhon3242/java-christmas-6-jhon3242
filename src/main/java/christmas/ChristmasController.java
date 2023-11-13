@@ -35,11 +35,11 @@ public class ChristmasController {
     }
 
     private static void printDiscountInformation(Reservation reservation) {
-        OutputView.printBeforeDiscountPrice(reservation.calculateTotalMoney());
-        OutputView.printGift(reservation.calculateGift());
+        OutputView.printOriginalPrice(reservation.calculateTotalOriginalMoney());
+        OutputView.printGiftMenu(reservation.calculateGift());
         OutputView.printDiscountLogs(reservation.getDiscountRepository());
         OutputView.printTotalDiscountMoney(reservation.calculateTotalDiscountMoney());
-        OutputView.printFinalPrice(reservation.calculateTotalDiscountedMoney());
+        OutputView.printToTalFinalPrice(reservation.calculateTotalFinalMoney());
         OutputView.printEventBadge(reservation.calculateEventBadge());
     }
 }

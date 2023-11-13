@@ -103,7 +103,7 @@ public class TotalDiscountTest {
 
         Money expected = Menu.ICE_CREAM.getPrice();
 
-        assertThat(reservation.calculateTotalDiscountedMoney()).isEqualTo(expected);
+        assertThat(reservation.calculateTotalFinalMoney()).isEqualTo(expected);
     }
 
 //    @ParameterizedTest()

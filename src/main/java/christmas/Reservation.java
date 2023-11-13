@@ -23,20 +23,20 @@ public class Reservation {
         return discountRepository.calculateGift();
     }
 
+    public Money calculateTotalOriginalMoney() {
+        return menus.calculateTotalPrice();
+    }
+
     public Money calculateTotalDiscountMoney() {
         return discountRepository.calculateTotalDiscountMoney();
     }
 
-    public Money calculateTotalMoney() {
-        return menus.calculateTotalPrice();
-    }
-
-    public Money calculateTotalDiscountedMoney() {
+    public Money calculateTotalFinalMoney() {
         Money discountMoney = calculateTotalDiscountMoney();
         if (discountRepository.hasGiftDiscount()) {
             discountMoney = discountMoney.minus(GiftDiscount.getGift().getPrice());
         }
-        return calculateTotalMoney().minus(discountMoney);
+        return calculateTotalOriginalMoney().minus(discountMoney);
     }
 
     public EventBadge calculateEventBadge() {

@@ -14,7 +14,7 @@ public class TotalDiscountedPriceTest {
         DecemberDate dDayWeekdayDate = new DecemberDate(4);
         Reservation reservation = Reservation.of(dDayWeekdayDate, allTypeMenus);
 
-        Money totalDiscountedMoney = reservation.calculateTotalDiscountedMoney();
+        Money totalDiscountedMoney = reservation.calculateTotalFinalMoney();
         Money expected = allTypeMenus.calculateTotalPrice()
                 .minus(new Money(1300 + 2023));
 
@@ -28,7 +28,7 @@ public class TotalDiscountedPriceTest {
         DecemberDate dDayWeekdayDate = new DecemberDate(4);
         Reservation reservation = Reservation.of(dDayWeekdayDate, allTypeMenus);
 
-        Money totalDiscountedMoney = reservation.calculateTotalDiscountedMoney();
+        Money totalDiscountedMoney = reservation.calculateTotalFinalMoney();
         Money expected = allTypeMenus.calculateTotalPrice()
                 .minus(new Money(1300 + 2023));
 

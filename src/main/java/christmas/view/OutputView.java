@@ -49,7 +49,7 @@ public class OutputView {
         System.out.printf(OUTPUT_FORMAT_MENU, menu.getName(), count);
     }
 
-    public static void printBeforeDiscountPrice(Money price) {
+    public static void printOriginalPrice(Money price) {
         System.out.println(OUTPUT_TITLE_PRE_DISCOUNT_TOTAL_PRICE);
         printMoney(price, false);
         System.out.println();
@@ -63,7 +63,7 @@ public class OutputView {
         System.out.println(OUTPUT_FORMAT_MONEY.format(money.amount()));
     }
 
-    public static void printGift(Menu gift) {
+    public static void printGiftMenu(Menu gift) {
         System.out.println(OUTPUT_TITLE_GIFT_MENU);
         if (Objects.isNull(gift)) {
             System.out.println(NOTHING);
@@ -99,7 +99,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printFinalPrice(Money finalPrice) {
+    public static void printToTalFinalPrice(Money finalPrice) {
         System.out.println(OUTPUT_TITLE_DISCOUNTED_TOTAL_PRICE);
         printMoney(finalPrice, false);
         System.out.println();
