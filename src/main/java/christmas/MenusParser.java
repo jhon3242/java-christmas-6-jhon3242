@@ -19,9 +19,9 @@ public class MenusParser {
     }
 
     private static void addMenuToOrderRepository(Map<Menu, Integer> orderRepository, String menuString) {
-        ParsedMenu parsedMenu = ParsedMenu.createByString(menuString);
-        validateDuplicateMenu(orderRepository, parsedMenu.menu());
-        orderRepository.put(parsedMenu.menu(), parsedMenu.count());
+        OrderedMenu orderedMenu = OrderedMenu.createByString(menuString);
+        validateDuplicateMenu(orderRepository, orderedMenu.menu());
+        orderRepository.put(orderedMenu.menu(), orderedMenu.count());
     }
 
     private static void validateDuplicateMenu(Map<Menu, Integer> result, Menu menu) {
