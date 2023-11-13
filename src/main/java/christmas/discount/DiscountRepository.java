@@ -52,7 +52,8 @@ public class DiscountRepository {
     }
 
     public boolean hasGiftDiscount() {
-        return discountRepository.containsKey(GiftDiscount.NAME);
+        return discountRepository.containsKey(GiftDiscount.NAME) &&
+                !Objects.equals(discountRepository.get(GiftDiscount.NAME), new Money(0));
     }
 
     public Map<String, Money> getDiscountRepository() {

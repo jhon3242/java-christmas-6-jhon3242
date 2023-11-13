@@ -7,7 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ReservationTest {
+public class TotalDiscountTest {
     @DisplayName("크리스마스 디데이 + 평일 + 특별 할인 금액 계산이 문제 없다.")
     @Test
     void dDayAndWeekdayAndSpecialDiscount() {

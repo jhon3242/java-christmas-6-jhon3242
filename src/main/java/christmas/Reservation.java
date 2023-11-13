@@ -39,10 +39,6 @@ public class Reservation {
         return calculateTotalMoney().minus(discountMoney);
     }
 
-//    public Map<String, Money> getDiscountRepository() {
-//        return Collections.unmodifiableMap(discountRepository);
-//    }
-
     // TODO Enum 리팩터링
     public String calculateEventBadge() {
         Money totalDiscountMoney = calculateTotalDiscountMoney();
