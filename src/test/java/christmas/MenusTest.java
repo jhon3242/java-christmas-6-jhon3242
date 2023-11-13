@@ -16,9 +16,18 @@ public class MenusTest {
         });
     }
 
-    @DisplayName("메뉴의 형식이 잘못된 경우 예외가 발생한다.")
+    @DisplayName("메뉴의 구분자가 잘못된 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"타파스-1,제로콜라-a", "타파스-1 제로콜라-2"})
+    @ValueSource(strings = {"타파스-1.제로콜라-2", "타파스-1 제로콜라-2"})
+    void menusInvalidDelimiterFormat(String inputValue) {
+        Assertions.assertThatThrownBy(() -> {
+            Menus.createByString(inputValue);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("메뉴의 숫자가 잘못된 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"타파스-1,제로콜라-a", "타파스-1a,제로콜라-2"})
     void menusInvalidFormat(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
             Menus.createByString(inputValue);
