@@ -17,7 +17,7 @@ public class ReservationTest {
         menuIntegerMap.put(Menu.SEA_FOOD_PASTA, 5);
         menuIntegerMap.put(Menu.ICE_CREAM, 2);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(date, menus);
+        Reservation reservation = Reservation.of(date, menus);
 
         Money expected = new Money(1200 + 2023 * 2 + 1000 + 25000);
 
@@ -36,7 +36,7 @@ public class ReservationTest {
         menuIntegerMap.put(Menu.RED_WINE, 1);
         menuIntegerMap.put(Menu.ICE_CREAM, 2);
         menuIntegerMap.put(Menu.CHAMPAGNE, 1);
-        Reservation reservation = new Reservation(date, menus);
+        Reservation reservation = Reservation.of(date, menus);
 
         Money expected = new Money(1800 + 2023 * 5 + 25000);
 
@@ -49,7 +49,7 @@ public class ReservationTest {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(date, menus);
+        Reservation reservation = Reservation.of(date, menus);
 
         menuIntegerMap.put(Menu.ICE_CREAM, 1);
         Money expected = new Money(0);
@@ -67,7 +67,7 @@ public class ReservationTest {
         menuIntegerMap.put(Menu.CHAMPAGNE, 1);
         Menus menus = new Menus(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(date, menus);
+        Reservation reservation = Reservation.of(date, menus);
 
         Money expected = new Money(27200);
 
@@ -85,7 +85,7 @@ public class ReservationTest {
         menuIntegerMap.put(Menu.CHOCO_CAKE, 2);
         menuIntegerMap.put(Menu.CHAMPAGNE, 1);
         DecemberDate date = new DecemberDate(9);
-        Reservation reservation = new Reservation(date, menus);
+        Reservation reservation = Reservation.of(date, menus);
 
         Money expected = new Money(26800);
 
@@ -99,7 +99,7 @@ public class ReservationTest {
         Menus menus = new Menus(menuIntegerMap);
         menuIntegerMap.put(Menu.ICE_CREAM, 1);
         DecemberDate date = new DecemberDate(3);
-        Reservation reservation = new Reservation(date, menus);
+        Reservation reservation = Reservation.of(date, menus);
 
         Money expected = Menu.ICE_CREAM.getPrice();
 

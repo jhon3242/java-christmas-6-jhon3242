@@ -8,10 +8,14 @@ public class Reservation {
     private DecemberDate decemberDate;
     private Menus menus;
 
-    public Reservation(DecemberDate decemberDate, Menus menus) {
+    private Reservation(DecemberDate decemberDate, Menus menus) {
         this.decemberDate = decemberDate;
         this.menus = menus;
         this.discountRepository = DiscountRepository.calculateDiscount(decemberDate, menus);
+    }
+
+    public static Reservation of(DecemberDate decemberDate, Menus menus) {
+        return new Reservation(decemberDate, menus);
     }
 
     public Menu calculateGift() {

@@ -5,14 +5,12 @@ import christmas.view.OutputView;
 import java.util.function.Supplier;
 
 public class ChristmasController {
-
-
     public static void run() {
         OutputView.printWelcome();
 
         DecemberDate reserveDate = initDecemberDate();
         Menus menus = initMenus();
-        Reservation reservation = new Reservation(reserveDate, menus);
+        Reservation reservation = Reservation.of(reserveDate, menus);
 
         OutputView.printEventPreMessage(reserveDate);
         OutputView.printOrderMenus(menus);

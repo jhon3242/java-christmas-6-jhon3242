@@ -21,7 +21,6 @@ import christmas.Menus;
 import christmas.Money;
 import christmas.discount.DiscountRepository;
 import christmas.message.ExceptionMessage;
-import java.util.Map;
 import java.util.Objects;
 
 public class OutputView {

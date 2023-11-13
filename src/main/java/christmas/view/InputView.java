@@ -13,7 +13,7 @@ public class InputView {
 
     public static String readMenu() {
         System.out.println(ViewMessage.INPUT_MENU);
-        return Console.readLine();
+        return Console.readLine().trim();
     }
 
     private static int readInteger() {
@@ -36,7 +36,6 @@ public class InputView {
         }
     }
 
-    // TODO 정규표현식으로 리팩터링
     private static void validateInteger(String inputValue) {
         try {
             Integer.parseInt(inputValue);
