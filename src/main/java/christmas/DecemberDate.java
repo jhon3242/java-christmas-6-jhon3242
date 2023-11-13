@@ -4,7 +4,7 @@ import christmas.message.ExceptionMessage;
 import java.util.List;
 
 public record DecemberDate(int dateAmount) {
-    private static final List<Integer> weekendDateAmounts = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
+    private static final List<Integer> WEEKEND_DATES = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
     private static final int MINIMUM_DATE_AMOUNT = 1;
     private static final int MAXIMUM_DATE_AMOUNT = 31;
 
@@ -32,7 +32,7 @@ public record DecemberDate(int dateAmount) {
     }
 
     public boolean isWeekend() {
-        return weekendDateAmounts.contains(dateAmount);
+        return WEEKEND_DATES.contains(dateAmount);
     }
 
     public boolean isWeekday() {

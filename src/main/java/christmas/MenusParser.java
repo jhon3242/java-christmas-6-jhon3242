@@ -4,17 +4,10 @@ import christmas.message.ExceptionMessage;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MenusParser {
-    private static final String FORMAT_MENU_ORDER = "([가-힣]+)-(\\d+)";
-    private static final Pattern pattern = Pattern.compile(FORMAT_MENU_ORDER);
     private static final int MAX_MENU_COUNT = 20;
     private static final String DELIMITER_MENU_ORDER = ",";
-    public static final int NAME_INDEX = 1;
-    public static final int COUNT_INDEX = 2;
 
     public static Map<Menu, Integer> parse(String inputValue) {
         Map<Menu, Integer> orderRepository = new EnumMap<>(Menu.class);
@@ -26,37 +19,13 @@ public class MenusParser {
     }
 
     private static void addMenuToOrderRepository(Map<Menu, Integer> orderRepository, String menuString) {
-        Matcher matcher = pattern.matcher(menuString);
-        validateFormat(matcher);
-        Menu menu = Menu.findByName(matcher.group(NAME_INDEX));
-        int count = Integer.parseInt(matcher.group(COUNT_INDEX));
-        validateMenu(orderRepository, menu);
-        validateCount(count);
-        orderRepository.put(menu, count);
+        ParsedMenu parsedMenu = ParsedMenu.createByString(menuString);
+        validateDuplicateMenu(orderRepository, parsedMenu.menu());
+        orderRepository.put(parsedMenu.menu(), parsedMenu.count());
     }
 
-    private static void validateFormat(Matcher matcher) {
-        if (matcher.matches()) {
-            return;
-        }
-        throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER);
-    }
-
-    private static void validateMenu(Map<Menu, Integer> result, Menu menu) {
-        if (Objects.isNull(menu)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER);
-        }
-        if (hasSameMenu(result, menu)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER);
-        }
-    }
-
-    private static boolean hasSameMenu(Map<Menu, Integer> result, Menu menu) {
-        return result.containsKey(menu);
-    }
-
-    private static void validateCount(int count) {
-        if (count <= 0) {
+    private static void validateDuplicateMenu(Map<Menu, Integer> result, Menu menu) {
+        if (result.containsKey(menu)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_ORDER);
         }
     }

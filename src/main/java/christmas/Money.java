@@ -12,10 +12,6 @@ public record Money(int amount) {
         return amount >= source.amount;
     }
 
-    public boolean isLessThan(Money money) {
-        return amount < money.amount;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
