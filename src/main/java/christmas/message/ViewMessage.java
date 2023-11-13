@@ -11,7 +11,7 @@ public class ViewMessage {
 
     public static final DecimalFormat OUTPUT_FORMAT_MONEY = new DecimalFormat("###,###원");
     public static final String OUTPUT_WELCOME_MESSAGE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    public static final String OUTPUT_FORMAT_EVENT_PRE_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+    public static final String OUTPUT_FORMAT_EVENT_PRE_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
     public static final String OUTPUT_FORMAT_DISCOUNT = "%s: -%s\n";
     public static final String OUTPUT_FORMAT_MENU = "%s - %d개\n";
     public static final String OUTPUT_TITLE_ORDER_MENU = "<주문 메뉴>";

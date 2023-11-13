@@ -30,6 +30,7 @@ public class OutputView {
 
     public static void printEventPreMessage(DecemberDate date) {
         System.out.printf(OUTPUT_FORMAT_EVENT_PRE_MESSAGE, date.dateAmount());
+        System.out.println();
     }
 
     public static void printException(IllegalArgumentException exception) {

@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.discount.DiscountRepository;
+import christmas.discount.GiftDiscount;
 
 public class Reservation {
 
@@ -32,6 +33,9 @@ public class Reservation {
 
     public Money calculateTotalDiscountedMoney() {
         Money discountMoney = calculateTotalDiscountMoney();
+        if (discountRepository.hasGiftDiscount()) {
+            discountMoney = discountMoney.minus(GiftDiscount.getGift().getPrice());
+        }
         return calculateTotalMoney().minus(discountMoney);
     }
 

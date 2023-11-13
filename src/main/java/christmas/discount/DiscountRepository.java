@@ -51,6 +51,10 @@ public class DiscountRepository {
         return discountRepository.isEmpty() || Objects.equals(calculateTotalDiscountMoney(), new Money(0));
     }
 
+    public boolean hasGiftDiscount() {
+        return discountRepository.containsKey(GiftDiscount.NAME);
+    }
+
     public Map<String, Money> getDiscountRepository() {
         return Collections.unmodifiableMap(discountRepository);
     }
