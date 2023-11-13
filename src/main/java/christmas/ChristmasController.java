@@ -2,6 +2,7 @@ package christmas;
 
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.function.Supplier;
 
 public class ChristmasController {
 
@@ -9,31 +10,29 @@ public class ChristmasController {
     public static void run() {
         OutputView.printWelcome();
 
-        DecemberDate reserveDate = initReservationDate();
+        DecemberDate reserveDate = initDecemberDate();
         Menus menus = initMenus();
         Reservation reservation = new Reservation(reserveDate, menus);
-
 
         OutputView.printEventPreMessage(reserveDate);
         OutputView.printOrderMenus(menus);
         printDiscountInformation(reservation);
     }
 
-    private static DecemberDate initReservationDate() {
-        try {
-            return new DecemberDate(InputView.readDate());
-        } catch (IllegalArgumentException exception) {
-            OutputView.printException(exception);
-            return initReservationDate();
-        }
+    private static DecemberDate initDecemberDate() {
+        return getValidValue(() -> new DecemberDate(InputView.readDate()));
     }
 
     private static Menus initMenus() {
+        return getValidValue(() -> Menus.createByString(InputView.readMenu()));
+    }
+
+    private static <T> T getValidValue(Supplier<T> inputMethod) {
         try {
-            return Menus.createByString(InputView.readMenu());
+            return inputMethod.get();
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return initMenus();
+            return getValidValue(inputMethod);
         }
     }
 
@@ -45,13 +44,4 @@ public class ChristmasController {
         OutputView.printFinalPrice(reservation.calculateTotalDiscountedMoney());
         OutputView.printEventBadge(reservation.calculateEventBadge());
     }
-
-//    private static <T> T inputValue(Supplier<T> supplier) {
-//        try {
-//            return supplier.get();
-//        } catch (IllegalArgumentException exception) {
-//            OutputView.printException(exception);
-//            return inputValue(supplier);
-//        }
-//    }
 }
