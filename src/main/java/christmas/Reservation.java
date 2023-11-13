@@ -5,9 +5,9 @@ import christmas.discount.GiftDiscount;
 
 public class Reservation {
 
-    private DiscountRepository discountRepository;
-    private DecemberDate decemberDate;
-    private Menus menus;
+    private final DiscountRepository discountRepository;
+    private final DecemberDate decemberDate;
+    private final Menus menus;
 
     private Reservation(DecemberDate decemberDate, Menus menus) {
         this.decemberDate = decemberDate;
@@ -39,19 +39,9 @@ public class Reservation {
         return calculateTotalMoney().minus(discountMoney);
     }
 
-    // TODO Enum 리팩터링
-    public String calculateEventBadge() {
+    public EventBadge calculateEventBadge() {
         Money totalDiscountMoney = calculateTotalDiscountMoney();
-        if (totalDiscountMoney.isMoreOrEqualThan(new Money(20000))) {
-            return "산타";
-        }
-        if (totalDiscountMoney.isMoreOrEqualThan(new Money(10000))) {
-            return "트리";
-        }
-        if (totalDiscountMoney.isMoreOrEqualThan(new Money(5000))) {
-            return "별";
-        }
-        return "없음";
+        return EventBadge.findByTotalDiscountPrice(totalDiscountMoney);
     }
 
     public DiscountRepository getDiscountRepository() {

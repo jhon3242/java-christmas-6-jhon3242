@@ -16,6 +16,7 @@ import static christmas.message.ViewMessage.OUTPUT_TITLE_TOTAL_DISCOUNT;
 import static christmas.message.ViewMessage.OUTPUT_WELCOME_MESSAGE;
 
 import christmas.DecemberDate;
+import christmas.EventBadge;
 import christmas.Menu;
 import christmas.Menus;
 import christmas.Money;
@@ -104,9 +105,9 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printEventBadge(String eventBadge) {
+    public static void printEventBadge(EventBadge eventBadge) {
         System.out.println(OUTPUT_TITLE_EVENT_BADGE);
-        System.out.println(eventBadge);
+        System.out.println(eventBadge.getName());
         System.out.println();
     }
 }
