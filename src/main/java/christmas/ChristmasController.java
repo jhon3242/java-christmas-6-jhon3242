@@ -22,19 +22,19 @@ public class ChristmasController {
     }
 
     private static DecemberDate initDecemberDate() {
-        return getValidValue(() -> new DecemberDate(InputView.readDate()));
+        return receiveValidatedValue(() -> new DecemberDate(InputView.readDate()));
     }
 
     private static OrderRepository initOrderRepository() {
-        return getValidValue(() -> OrderRepository.createByString(InputView.readOrders()));
+        return receiveValidatedValue(() -> OrderRepository.createByString(InputView.readOrders()));
     }
 
-    private static <T> T getValidValue(Supplier<T> inputMethod) {
+    private static <T> T receiveValidatedValue(Supplier<T> inputMethod) {
         try {
             return inputMethod.get();
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return getValidValue(inputMethod);
+            return receiveValidatedValue(inputMethod);
         }
     }
 
