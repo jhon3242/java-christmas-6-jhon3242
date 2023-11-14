@@ -6,15 +6,16 @@ import java.util.function.Supplier;
 
 public class ChristmasController {
     public static void run() {
-        OutputView.printWelcome();
-
-        DecemberDate reserveDate = initDecemberDate();
-        Menus menus = initMenus();
-        Reservation reservation = Reservation.of(reserveDate, menus);
-
-        OutputView.printEventPreMessage(reserveDate);
-        OutputView.printOrderMenus(menus);
+        Reservation reservation = initReservation();
+        printOrderInformation(reservation);
         printDiscountInformation(reservation);
+    }
+
+    private static Reservation initReservation() {
+        OutputView.printWelcome();
+        DecemberDate date = initDecemberDate();
+        Menus menus = initMenus();
+        return Reservation.of(date, menus);
     }
 
     private static DecemberDate initDecemberDate() {
@@ -32,6 +33,11 @@ public class ChristmasController {
             OutputView.printException(exception);
             return getValidValue(inputMethod);
         }
+    }
+
+    private static void printOrderInformation(Reservation reservation) {
+        OutputView.printEventPreMessage(reservation.getDecemberDate());
+        OutputView.printOrderMenus(reservation.getMenus());
     }
 
     private static void printDiscountInformation(Reservation reservation) {

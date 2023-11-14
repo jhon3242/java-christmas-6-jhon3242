@@ -47,4 +47,12 @@ public class Reservation {
     public DiscountRepository getDiscountRepository() {
         return discountRepository;
     }
+
+    public DecemberDate getDecemberDate() {
+        return decemberDate;
+    }
+
+    public Menus getMenus() {
+        return menus;
+    }
 }
