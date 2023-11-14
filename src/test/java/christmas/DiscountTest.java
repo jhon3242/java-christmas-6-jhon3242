@@ -20,7 +20,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class DiscountTest {
-    // TODO FIxture 도입
     private static final DecemberDate WEEKEND = new DecemberDate(1);
     private static final DecemberDate WEEKDAY = new DecemberDate(3);
 
@@ -72,8 +71,12 @@ public class DiscountTest {
         return Stream.of(
                 Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.CHOCO_CAKE)), WEEKEND,
                         new Money(2023)),
+                Arguments.of(makeMenusByList(List.of(Menu.T_BORN_STAKE, Menu.BBQ_RIBS, Menu.SEA_FOOD_PASTA, Menu.CHRISTMAS_PASTA)), WEEKEND,
+                        new Money(2023 * 4)),
                 Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.BBQ_RIBS, Menu.T_BORN_STAKE)), WEEKDAY,
-                        new Money(0)));
+                        new Money(0))
+
+        );
     }
 
     @DisplayName("평일에만 디저트 메뉴 하나 당 2023원 할인이 적용된다.")
@@ -91,7 +94,11 @@ public class DiscountTest {
                         new Money(0)),
                 Arguments.of(makeMenusByList(List.of(Menu.CHAMPAGNE, Menu.CHOCO_CAKE, Menu.T_BORN_STAKE)), WEEKDAY,
                         new Money(2023)
-                ));
+                ),
+                Arguments.of(makeMenusByList(List.of(Menu.ICE_CREAM, Menu.CHOCO_CAKE)), WEEKDAY,
+                        new Money(2023 * 2)
+                )
+        );
     }
 
     @DisplayName("이벤트 달력에 별이 있는 날에는 1000원 할인을 해준다.")
