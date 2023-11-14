@@ -1,6 +1,18 @@
 package christmas.domain;
 
+import christmas.message.ExceptionMessage;
+
 public record Money(int amount) {
+
+    public Money {
+        validateAmount(amount);
+    }
+
+    private void validateAmount(int amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_MONEY);
+        }
+    }
 
     public static Money sum(Money money1, Money money2) {
         return new Money(money1.amount + money2.amount);
