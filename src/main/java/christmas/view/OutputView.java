@@ -56,7 +56,7 @@ public class OutputView {
     }
 
     private static void printMoney(Money money, boolean isMinus) {
-        boolean isNotZero = !Objects.equals(money.amount(), 0);
+        boolean isNotZero = !money.isZero();
         if (isNotZero && isMinus) {
             System.out.print(MINUS);
         }
@@ -76,7 +76,7 @@ public class OutputView {
 
     public static void printDiscountLogs(DiscountRepository discountRepository) {
         System.out.println(OUTPUT_TITLE_DISCOUNT);
-        if (discountRepository.isNotDiscount()) {
+        if (discountRepository.isNoDiscount()) {
             System.out.println(NOTHING);
             System.out.println();
             return;
@@ -87,7 +87,7 @@ public class OutputView {
     }
 
     private static void printDiscountLog(String key, Money discount) {
-        if (Objects.equals(discount, new Money(0))) {
+        if (discount.isZero()) {
             return;
         }
         System.out.printf(OUTPUT_FORMAT_DISCOUNT, key, OUTPUT_FORMAT_MONEY.format(discount.amount()));

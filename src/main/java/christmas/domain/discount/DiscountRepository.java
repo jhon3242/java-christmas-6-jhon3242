@@ -47,7 +47,7 @@ public class DiscountRepository {
         return GiftDiscount.getGift();
     }
 
-    public boolean isNotDiscount() {
+    public boolean isNoDiscount() {
         return discountRepository.isEmpty() || calculateTotalDiscountMoney().isZero();
     }
 

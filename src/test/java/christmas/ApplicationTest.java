@@ -21,13 +21,13 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             run("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
             assertThat(output()).contains(
-                "<주문 메뉴>",
-                "<할인 전 총주문 금액>",
-                "<증정 메뉴>",
-                "<혜택 내역>",
-                "<총혜택 금액>",
-                "<할인 후 예상 결제 금액>",
-                "<12월 이벤트 배지>"
+                    "<주문 메뉴>",
+                    "<할인 전 총주문 금액>",
+                    "<증정 메뉴>",
+                    "<혜택 내역>",
+                    "<총혜택 금액>",
+                    "<할인 후 예상 결제 금액>",
+                    "<12월 이벤트 배지>"
             );
         });
     }
@@ -37,26 +37,28 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             run("4", "티본스테이크-1");
 
-            assertThat(output()).doesNotContain(
-                    SpecialDiscount.NAME,
-                    WeekDiscount.getNameByDate(WEEKEND),
-                    WeekDiscount.getNameByDate(WEEKDAY),
-                    GiftDiscount.NAME
-            );
+            assertThat(output())
+                    .doesNotContain(
+                        SpecialDiscount.NAME,
+                        WeekDiscount.getNameByDate(WEEKEND),
+                        WeekDiscount.getNameByDate(WEEKDAY),
+                        GiftDiscount.NAME
+                    ).contains(DDayDiscount.NAME);
         });
     }
 
     @Test
     void 오직_주말_할인() {
         assertSimpleTest(() -> {
-            run("26", "티본스테이크-1");
+            run("29", "티본스테이크-1");
 
-            assertThat(output()).doesNotContain(
-                    DDayDiscount.NAME,
-                    WeekDiscount.getNameByDate(WEEKDAY),
-                    SpecialDiscount.NAME,
-                    GiftDiscount.NAME
-            );
+            assertThat(output())
+                    .doesNotContain(
+                        DDayDiscount.NAME,
+                        WeekDiscount.getNameByDate(WEEKDAY),
+                        SpecialDiscount.NAME,
+                        GiftDiscount.NAME
+                    ).contains(WeekDiscount.getNameByDate(WEEKEND));
         });
     }
 
@@ -65,12 +67,13 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             run("26", "아이스크림-2");
 
-            assertThat(output()).doesNotContain(
-                    DDayDiscount.NAME,
-                    WeekDiscount.getNameByDate(WEEKEND),
-                    SpecialDiscount.NAME,
-                    GiftDiscount.NAME
-            );
+            assertThat(output())
+                    .doesNotContain(
+                        DDayDiscount.NAME,
+                        WeekDiscount.getNameByDate(WEEKEND),
+                        SpecialDiscount.NAME,
+                        GiftDiscount.NAME
+                    ).contains(WeekDiscount.getNameByDate(WEEKDAY));
         });
     }
 
@@ -79,12 +82,13 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             run("31", "티본스테이크-1");
 
-            assertThat(output()).doesNotContain(
-                    DDayDiscount.NAME,
-                    WeekDiscount.getNameByDate(WEEKDAY),
-                    WeekDiscount.getNameByDate(WEEKEND),
-                    GiftDiscount.NAME
-            );
+            assertThat(output())
+                    .doesNotContain(
+                        DDayDiscount.NAME,
+                        WeekDiscount.getNameByDate(WEEKDAY),
+                        WeekDiscount.getNameByDate(WEEKEND),
+                        GiftDiscount.NAME
+                    ).contains(SpecialDiscount.NAME);
         });
     }
 
@@ -93,12 +97,13 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             run("28", "티본스테이크-3");
 
-            assertThat(output()).doesNotContain(
-                    DDayDiscount.NAME,
-                    WeekDiscount.getNameByDate(WEEKDAY),
-                    WeekDiscount.getNameByDate(WEEKEND),
-                    SpecialDiscount.NAME
-            );
+            assertThat(output())
+                    .doesNotContain(
+                        DDayDiscount.NAME,
+                        WeekDiscount.getNameByDate(WEEKDAY),
+                        WeekDiscount.getNameByDate(WEEKEND),
+                        SpecialDiscount.NAME
+                    ).contains(GiftDiscount.NAME);
         });
     }
 
