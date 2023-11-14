@@ -6,6 +6,7 @@ import christmas.domain.menu.OrderRepository;
 import christmas.domain.Money;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class DiscountRepository {
     private final Map<String, Money> discountRepository;
 
     private DiscountRepository(DecemberDate date, OrderRepository menus) {
-        Map<String, Money> discountResult = new HashMap<>();
+        Map<String, Money> discountResult = new LinkedHashMap<>();
         initDiscountRepository(date, menus, discountResult);
         this.discountRepository = discountResult;
     }
@@ -26,9 +27,9 @@ public class DiscountRepository {
     private void initDiscountRepository(DecemberDate date, OrderRepository menus, Map<String, Money> discountResult) {
         Money totalPrice = menus.calculateTotalPrice();
         if (totalPrice.isMoreOrEqualThan(MIN_DISCOUNT_MONEY)) {
+            discountResult.put(DDayDiscount.NAME, DDayDiscount.calculateDiscountAmount(date));
             discountResult.put(WeekDiscount.getNameByDate(date), WeekDiscount.calculateDiscountAmount(date, menus));
             discountResult.put(SpecialDiscount.NAME, SpecialDiscount.calculateDiscountAmount(date));
-            discountResult.put(DDayDiscount.NAME, DDayDiscount.calculateDiscountAmount(date));
             discountResult.put(GiftDiscount.NAME, GiftDiscount.calculateDiscountAmount(totalPrice));
         }
     }
