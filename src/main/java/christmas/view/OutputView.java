@@ -15,12 +15,12 @@ import static christmas.message.ViewMessage.OUTPUT_TITLE_PRE_DISCOUNT_TOTAL_PRIC
 import static christmas.message.ViewMessage.OUTPUT_TITLE_TOTAL_DISCOUNT;
 import static christmas.message.ViewMessage.OUTPUT_WELCOME_MESSAGE;
 
-import christmas.DecemberDate;
-import christmas.EventBadge;
-import christmas.Menu;
-import christmas.Menus;
-import christmas.Money;
-import christmas.discount.DiscountRepository;
+import christmas.domain.DecemberDate;
+import christmas.domain.EventBadge;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
+import christmas.domain.Money;
+import christmas.domain.discount.DiscountRepository;
 import christmas.message.ExceptionMessage;
 import java.util.Objects;
 

@@ -1,9 +1,9 @@
-package christmas.discount;
+package christmas.domain.discount;
 
-import christmas.DecemberDate;
-import christmas.Menu;
-import christmas.Menus;
-import christmas.Money;
+import christmas.domain.DecemberDate;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
+import christmas.domain.Money;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

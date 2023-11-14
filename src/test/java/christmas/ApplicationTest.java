@@ -4,10 +4,11 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import christmas.discount.DDayDiscount;
-import christmas.discount.GiftDiscount;
-import christmas.discount.SpecialDiscount;
-import christmas.discount.WeekDiscount;
+import christmas.domain.discount.DDayDiscount;
+import christmas.domain.discount.GiftDiscount;
+import christmas.domain.discount.SpecialDiscount;
+import christmas.domain.discount.WeekDiscount;
+import christmas.domain.DecemberDate;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {

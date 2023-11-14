@@ -1,7 +1,7 @@
-package christmas.discount;
+package christmas.domain.discount;
 
-import christmas.DecemberDate;
-import christmas.Money;
+import christmas.domain.DecemberDate;
+import christmas.domain.Money;
 
 public class DDayDiscount {
     public static final String NAME = "크리스마스 디데이 할인";

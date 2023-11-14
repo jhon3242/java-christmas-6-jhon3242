@@ -1,4 +1,4 @@
-package christmas;
+package christmas.domain;
 
 public enum EventBadge {
     SANTA("산타", new Money( 20000)),

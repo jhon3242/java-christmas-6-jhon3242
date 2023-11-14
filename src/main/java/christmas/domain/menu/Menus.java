@@ -1,5 +1,6 @@
-package christmas;
+package christmas.domain.menu;
 
+import christmas.domain.Money;
 import java.util.Collections;
 import java.util.Map;
 

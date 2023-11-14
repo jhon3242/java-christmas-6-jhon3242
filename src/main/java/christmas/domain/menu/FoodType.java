@@ -1,4 +1,4 @@
-package christmas;
+package christmas.domain.menu;
 
 public enum FoodType {
     APPETIZER("애피타이저"),

@@ -1,7 +1,9 @@
-package christmas;
+package christmas.domain;
 
-import christmas.discount.DiscountRepository;
-import christmas.discount.GiftDiscount;
+import christmas.domain.discount.DiscountRepository;
+import christmas.domain.discount.GiftDiscount;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
 
 public class Reservation {
 

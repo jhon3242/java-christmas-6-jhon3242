@@ -2,6 +2,11 @@ package christmas;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.domain.DecemberDate;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
+import christmas.domain.Money;
+import christmas.domain.Reservation;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;

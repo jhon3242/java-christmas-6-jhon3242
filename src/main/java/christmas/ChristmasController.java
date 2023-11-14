@@ -1,5 +1,8 @@
 package christmas;
 
+import christmas.domain.DecemberDate;
+import christmas.domain.menu.Menus;
+import christmas.domain.Reservation;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.function.Supplier;

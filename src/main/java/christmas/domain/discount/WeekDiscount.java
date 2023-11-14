@@ -1,9 +1,9 @@
-package christmas.discount;
+package christmas.domain.discount;
 
-import christmas.DecemberDate;
-import christmas.FoodType;
-import christmas.Menus;
-import christmas.Money;
+import christmas.domain.DecemberDate;
+import christmas.domain.menu.FoodType;
+import christmas.domain.menu.Menus;
+import christmas.domain.Money;
 
 public class WeekDiscount {
     private static final int WEEKEND_DISCOUNT_AMOUNT = 2023;

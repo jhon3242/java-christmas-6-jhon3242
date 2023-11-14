@@ -1,7 +1,7 @@
-package christmas.discount;
+package christmas.domain.discount;
 
-import christmas.Menu;
-import christmas.Money;
+import christmas.domain.menu.Menu;
+import christmas.domain.Money;
 
 public class GiftDiscount {
     public static final String NAME = "증정 이벤트";

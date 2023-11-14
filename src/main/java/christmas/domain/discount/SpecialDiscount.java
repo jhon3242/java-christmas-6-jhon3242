@@ -1,7 +1,7 @@
-package christmas.discount;
+package christmas.domain.discount;
 
-import christmas.DecemberDate;
-import christmas.Money;
+import christmas.domain.DecemberDate;
+import christmas.domain.Money;
 import java.util.List;
 
 public class SpecialDiscount {

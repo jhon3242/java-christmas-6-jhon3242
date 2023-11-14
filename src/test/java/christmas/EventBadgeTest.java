@@ -1,5 +1,7 @@
 package christmas;
 
+import christmas.domain.EventBadge;
+import christmas.domain.Money;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package christmas;
+package christmas.domain.menu;
 
 import christmas.message.ExceptionMessage;
 import java.util.Objects;

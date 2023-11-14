@@ -2,10 +2,14 @@ package christmas;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.discount.DDayDiscount;
-import christmas.discount.GiftDiscount;
-import christmas.discount.SpecialDiscount;
-import christmas.discount.WeekDiscount;
+import christmas.domain.discount.DDayDiscount;
+import christmas.domain.discount.GiftDiscount;
+import christmas.domain.discount.SpecialDiscount;
+import christmas.domain.discount.WeekDiscount;
+import christmas.domain.DecemberDate;
+import christmas.domain.menu.Menu;
+import christmas.domain.menu.Menus;
+import christmas.domain.Money;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

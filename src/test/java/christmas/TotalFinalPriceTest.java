@@ -1,5 +1,9 @@
 package christmas;
 
+import christmas.domain.DecemberDate;
+import christmas.domain.menu.Menus;
+import christmas.domain.Money;
+import christmas.domain.Reservation;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
