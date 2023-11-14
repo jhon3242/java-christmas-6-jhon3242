@@ -4,7 +4,7 @@ import static christmas.message.ViewMessage.MINUS;
 import static christmas.message.ViewMessage.NOTHING;
 import static christmas.message.ViewMessage.OUTPUT_FORMAT_DISCOUNT;
 import static christmas.message.ViewMessage.OUTPUT_FORMAT_EVENT_PRE_MESSAGE;
-import static christmas.message.ViewMessage.OUTPUT_FORMAT_MENU;
+import static christmas.message.ViewMessage.OUTPUT_FORMAT_ORDER;
 import static christmas.message.ViewMessage.OUTPUT_FORMAT_MONEY;
 import static christmas.message.ViewMessage.OUTPUT_TITLE_DISCOUNT;
 import static christmas.message.ViewMessage.OUTPUT_TITLE_DISCOUNTED_TOTAL_PRICE;
@@ -38,15 +38,15 @@ public class OutputView {
         System.out.println(ExceptionMessage.ERROR_PREFIX + exception.getMessage());
     }
 
-    public static void printOrderMenus(OrderRepository menus) {
+    public static void printOrderMenus(OrderRepository orderRepository) {
         System.out.println(OUTPUT_TITLE_ORDER_MENU);
-        menus.menuRepository()
-                        .forEach(OutputView::printMenu);
+        orderRepository.repository()
+                        .forEach(OutputView::printOrder);
         System.out.println();
     }
 
-    private static void printMenu(Menu menu, int count) {
-        System.out.printf(OUTPUT_FORMAT_MENU, menu.getName(), count);
+    private static void printOrder(Menu menu, int count) {
+        System.out.printf(OUTPUT_FORMAT_ORDER, menu.getName(), count);
     }
 
     public static void printOriginalPrice(Money price) {
@@ -70,7 +70,7 @@ public class OutputView {
             System.out.println();
             return;
         }
-        printMenu(gift, 1);
+        printOrder(gift, 1);
         System.out.println();
     }
 

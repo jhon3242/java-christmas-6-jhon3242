@@ -4,30 +4,29 @@ import christmas.domain.Money;
 import java.util.Collections;
 import java.util.Map;
 
-public record OrderRepository(Map<Menu, Integer> menuRepository) {
+public record OrderRepository(Map<Menu, Integer> repository) {
 
-    public static OrderRepository createByString(String menuString) {
-        Map<Menu, Integer> menuRepository = OrderParser.parse(menuString);
-        return new OrderRepository(menuRepository);
+    public static OrderRepository createByString(String orderString) {
+        Map<Menu, Integer> orderRepository = OrderParser.parse(orderString);
+        return new OrderRepository(orderRepository);
     }
 
     public int findTotalCountByFoodType(FoodType foodType) {
-        return menuRepository.keySet()
+        return repository.keySet()
                 .stream()
                 .filter(menu -> menu.isSameType(foodType))
-                .map(menuRepository::get)
+                .map(repository::get)
                 .reduce(0, Integer::sum);
     }
 
     public Money calculateTotalPrice() {
-        return menuRepository.keySet()
+        return repository.keySet()
                 .stream()
-                .map((menu) -> menu.getPrice().multiply(menuRepository.get(menu)))
+                .map((menu) -> menu.getPrice().multiply(repository.get(menu)))
                 .reduce(new Money(0), Money::sum);
     }
 
-    @Override
-    public Map<Menu, Integer> menuRepository() {
-        return Collections.unmodifiableMap(menuRepository);
+    public Map<Menu, Integer> repository() {
+        return Collections.unmodifiableMap(repository);
     }
 }

@@ -11,8 +11,8 @@ public class InputView {
         return readInteger();
     }
 
-    public static String readMenu() {
-        System.out.println(ViewMessage.INPUT_MENU);
+    public static String readOrders() {
+        System.out.println(ViewMessage.INPUT_ORDERS);
         return Console.readLine().trim();
     }
 

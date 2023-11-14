@@ -17,16 +17,16 @@ public class ChristmasController {
     private static Reservation initReservation() {
         OutputView.printWelcomeMessage();
         DecemberDate date = initDecemberDate();
-        OrderRepository menus = initMenus();
-        return Reservation.of(date, menus);
+        OrderRepository orderRepository = initOrderRepository();
+        return Reservation.of(date, orderRepository);
     }
 
     private static DecemberDate initDecemberDate() {
         return getValidValue(() -> new DecemberDate(InputView.readDate()));
     }
 
-    private static OrderRepository initMenus() {
-        return getValidValue(() -> OrderRepository.createByString(InputView.readMenu()));
+    private static OrderRepository initOrderRepository() {
+        return getValidValue(() -> OrderRepository.createByString(InputView.readOrders()));
     }
 
     private static <T> T getValidValue(Supplier<T> inputMethod) {
@@ -40,7 +40,7 @@ public class ChristmasController {
 
     private static void printOrderInformation(Reservation reservation) {
         OutputView.printEventPreMessage(reservation.getDecemberDate());
-        OutputView.printOrderMenus(reservation.getMenus());
+        OutputView.printOrderMenus(reservation.getOrderRepository());
     }
 
     private static void printDiscountInformation(Reservation reservation) {

@@ -9,12 +9,12 @@ public class Reservation {
 
     private final DiscountRepository discountRepository;
     private final DecemberDate decemberDate;
-    private final OrderRepository menus;
+    private final OrderRepository orderRepository;
 
-    private Reservation(DecemberDate decemberDate, OrderRepository menus) {
+    private Reservation(DecemberDate decemberDate, OrderRepository orderRepository) {
         this.decemberDate = decemberDate;
-        this.menus = menus;
-        this.discountRepository = DiscountRepository.calculateDiscount(decemberDate, menus);
+        this.orderRepository = orderRepository;
+        this.discountRepository = DiscountRepository.calculateDiscount(decemberDate, orderRepository);
     }
 
     public static Reservation of(DecemberDate decemberDate, OrderRepository menus) {
@@ -26,7 +26,7 @@ public class Reservation {
     }
 
     public Money calculateTotalOriginalMoney() {
-        return menus.calculateTotalPrice();
+        return orderRepository.calculateTotalPrice();
     }
 
     public Money calculateTotalDiscountMoney() {
@@ -54,7 +54,7 @@ public class Reservation {
         return decemberDate;
     }
 
-    public OrderRepository getMenus() {
-        return menus;
+    public OrderRepository getOrderRepository() {
+        return orderRepository;
     }
 }
