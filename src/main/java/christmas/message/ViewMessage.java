@@ -20,5 +20,5 @@ public class ViewMessage {
     public static final String OUTPUT_TITLE_EVENT_BADGE = "<12월 이벤트 배지>";
     public static final String OUTPUT_FORMAT_EVENT_PRE_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
     public static final String OUTPUT_FORMAT_DISCOUNT = "%s: -%s\n";
-    public static final String OUTPUT_FORMAT_ORDER = "%s - %d개\n";
+    public static final String OUTPUT_FORMAT_ORDER = "%s %d개\n";
 }

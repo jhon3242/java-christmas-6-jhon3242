@@ -41,19 +41,19 @@ public class DiscountRepository {
 
     public Menu calculateGift() {
         Money money = discountRepository.get(GiftDiscount.NAME);
-        if (Objects.equals(money, new Money(0))) {
+        if (Objects.isNull(money) || money.isZero()) {
             return null;
         }
         return GiftDiscount.getGift();
     }
 
     public boolean isNotDiscount() {
-        return discountRepository.isEmpty() || Objects.equals(calculateTotalDiscountMoney(), new Money(0));
+        return discountRepository.isEmpty() || calculateTotalDiscountMoney().isZero();
     }
 
     public boolean hasGiftDiscount() {
         return discountRepository.containsKey(GiftDiscount.NAME) &&
-                !Objects.equals(discountRepository.get(GiftDiscount.NAME), new Money(0));
+                !discountRepository.get(GiftDiscount.NAME).isZero();
     }
 
     public Map<String, Money> getDiscountRepository() {

@@ -42,10 +42,6 @@ public enum Menu {
         return name;
     }
 
-    public FoodType getFoodType() {
-        return foodType;
-    }
-
     public Money getPrice() {
         return price;
     }
