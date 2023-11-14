@@ -105,17 +105,4 @@ public class TotalDiscountTest {
 
         assertThat(reservation.calculateTotalFinalMoney()).isEqualTo(expected);
     }
-
-//    @ParameterizedTest()
-//    @MethodSource("totalDiscountAmountProvider")
-//    void totalDiscountAmount(Reservation reservation, Money expected) {
-//        Money totalDiscountAmount = reservation.calculateTotalDiscountAmount();
-//
-//        assertThat(totalDiscountAmount).isEqualTo(expected);
-//    }
-//
-//    static Stream<Arguments> totalDiscountAmountProvider() {
-//        return Stream.of(
-//        )
-//    }
 }

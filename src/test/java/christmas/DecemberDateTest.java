@@ -1,6 +1,7 @@
 package christmas;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import christmas.message.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -22,7 +23,8 @@ public class DecemberDateTest {
     @ParameterizedTest
     @ValueSource(ints = {-10, -5, 0, 32, 33, 34, 35, 36, 37, 38, 39, 40})
     void decemberDateInvalidTest(int dateAmount) {
-        Assertions.assertThatIllegalArgumentException()
-                .isThrownBy(() -> new DecemberDate(dateAmount));
+        Assertions.assertThatThrownBy(() -> new DecemberDate(dateAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_DATE);
     }
 }

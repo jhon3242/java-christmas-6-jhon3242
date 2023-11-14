@@ -12,7 +12,7 @@ public class ChristmasController {
     }
 
     private static Reservation initReservation() {
-        OutputView.printWelcome();
+        OutputView.printWelcomeMessage();
         DecemberDate date = initDecemberDate();
         Menus menus = initMenus();
         return Reservation.of(date, menus);

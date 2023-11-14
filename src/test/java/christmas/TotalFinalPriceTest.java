@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TotalDiscountedPriceTest {
+public class TotalFinalPriceTest {
 
 
     @DisplayName("크리스마스 디데이 + 평일 + 특별 할인 후 최종 계산 금액에 문제가 없다.")

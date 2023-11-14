@@ -25,7 +25,7 @@ import christmas.message.ExceptionMessage;
 import java.util.Objects;
 
 public class OutputView {
-    public static void printWelcome() {
+    public static void printWelcomeMessage() {
         System.out.println(OUTPUT_WELCOME_MESSAGE);
     }
 
