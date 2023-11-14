@@ -1,6 +1,6 @@
 package christmas;
 
-import christmas.domain.menu.Menus;
+import christmas.domain.menu.OrderRepository;
 import christmas.message.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,7 @@ public class MenusTest {
     @ValueSource(strings = {"타파스-1,제로콜라-1", "타파스-1", "티본스테이크-1,바비큐립-1,초코케이크-10,제로콜라-8"})
     void menusValidFormat(String inputValue) {
         Assertions.assertThatNoException().isThrownBy(() -> {
-            Menus.createByString(inputValue);
+            OrderRepository.createByString(inputValue);
         });
     }
 
@@ -23,7 +23,7 @@ public class MenusTest {
     @ValueSource(strings = {"타파스-1.제로콜라-2", "타파스-1 제로콜라-2"})
     void menusInvalidDelimiterFormat(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
-                    Menus.createByString(inputValue);
+                    OrderRepository.createByString(inputValue);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER);
     }
@@ -33,7 +33,7 @@ public class MenusTest {
     @ValueSource(strings = {"타파스-1,제로콜라-a", "타파스-1a,제로콜라-2"})
     void menusInvalidFormat(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
-                    Menus.createByString(inputValue);
+                    OrderRepository.createByString(inputValue);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER);
 
@@ -44,7 +44,7 @@ public class MenusTest {
     @ValueSource(strings = {"없는메뉴-1,제로콜라-1", "없는메뉴-1,없는메뉴-2"})
     void menusNotIncludeMenu(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
-                    Menus.createByString(inputValue);
+                    OrderRepository.createByString(inputValue);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER);
 
@@ -55,7 +55,7 @@ public class MenusTest {
     @ValueSource(strings = {"타파스-1,타파스-1", "제로콜라-1,제로콜라-2"})
     void menusDuplicateMenu(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
-                    Menus.createByString(inputValue);
+                    OrderRepository.createByString(inputValue);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER);
 
@@ -66,7 +66,7 @@ public class MenusTest {
     @ValueSource(strings = {"타파스-0,제로콜라-1", "타파스-1,제로콜라-1.2", "타파스-1,제로콜라--10"})
     void menusInvalidCountMenu(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
-                    Menus.createByString(inputValue);
+                    OrderRepository.createByString(inputValue);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER);
 
@@ -77,7 +77,7 @@ public class MenusTest {
     @ValueSource(strings = {"제로콜라-1", "레드와인-1,제로콜라-1", "샴페인-1,레드와인-10"})
     void menusOnlyDrinkMenu(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
-                    Menus.createByString(inputValue);
+                    OrderRepository.createByString(inputValue);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER);
         ;
@@ -88,7 +88,7 @@ public class MenusTest {
     @ValueSource(strings = {"타파스-11,제로콜라-10", "타파스-25", "티본스테이크-10,바비큐립-5,초코케이크-10,제로콜라-5"})
     void menusMaxMenuCount(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
-                    Menus.createByString(inputValue);
+                    OrderRepository.createByString(inputValue);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_ORDER);
 

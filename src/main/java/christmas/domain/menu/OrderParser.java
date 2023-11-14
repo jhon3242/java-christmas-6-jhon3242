@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class MenusParser {
+public class OrderParser {
     private static final int MAX_MENU_COUNT = 20;
     private static final String DELIMITER_MENU_ORDER = ",";
 
@@ -19,9 +19,9 @@ public class MenusParser {
     }
 
     private static void addMenuToOrderRepository(Map<Menu, Integer> orderRepository, String menuString) {
-        OrderedMenu orderedMenu = OrderedMenu.createByString(menuString);
-        validateDuplicateMenu(orderRepository, orderedMenu.menu());
-        orderRepository.put(orderedMenu.menu(), orderedMenu.count());
+        Order order = Order.createByString(menuString);
+        validateDuplicateMenu(orderRepository, order.menu());
+        orderRepository.put(order.menu(), order.count());
     }
 
     private static void validateDuplicateMenu(Map<Menu, Integer> result, Menu menu) {

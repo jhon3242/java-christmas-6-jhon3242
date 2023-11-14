@@ -5,23 +5,23 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public record OrderedMenu(Menu menu, int count) {
+public record Order(Menu menu, int count) {
     private static final String FORMAT_MENU_ORDER = "([가-힣]+)-(\\d+)";
     private static final Pattern menuPattern = Pattern.compile(FORMAT_MENU_ORDER);
     private static final int NAME_INDEX = 1;
     private static final int COUNT_INDEX = 2;
 
-    public OrderedMenu {
+    public Order {
         validateNotNull(menu);
         validateCount(count);
     }
 
-    public static OrderedMenu createByString(String menuString) {
+    public static Order createByString(String menuString) {
         Matcher matcher = menuPattern.matcher(menuString);
         validateFormat(matcher);
         Menu menu = Menu.findByName(matcher.group(NAME_INDEX));
         int count = Integer.parseInt(matcher.group(COUNT_INDEX));
-        return new OrderedMenu(menu, count);
+        return new Order(menu, count);
     }
 
     private static void validateFormat(Matcher matcher) {

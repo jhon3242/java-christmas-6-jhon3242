@@ -2,7 +2,7 @@ package christmas.domain.discount;
 
 import christmas.domain.DecemberDate;
 import christmas.domain.menu.Menu;
-import christmas.domain.menu.Menus;
+import christmas.domain.menu.OrderRepository;
 import christmas.domain.Money;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,17 +13,17 @@ public class DiscountRepository {
     private static final Money MIN_DISCOUNT_MONEY = new Money(10000);
     private final Map<String, Money> discountRepository;
 
-    private DiscountRepository(DecemberDate date, Menus menus) {
+    private DiscountRepository(DecemberDate date, OrderRepository menus) {
         Map<String, Money> discountResult = new HashMap<>();
         initDiscountRepository(date, menus, discountResult);
         this.discountRepository = discountResult;
     }
 
-    public static DiscountRepository calculateDiscount(DecemberDate date, Menus menus) {
+    public static DiscountRepository calculateDiscount(DecemberDate date, OrderRepository menus) {
         return new DiscountRepository(date, menus);
     }
 
-    private void initDiscountRepository(DecemberDate date, Menus menus, Map<String, Money> discountResult) {
+    private void initDiscountRepository(DecemberDate date, OrderRepository menus, Map<String, Money> discountResult) {
         Money totalPrice = menus.calculateTotalPrice();
         if (totalPrice.isMoreOrEqualThan(MIN_DISCOUNT_MONEY)) {
             discountResult.put(WeekDiscount.getNameByDate(date), WeekDiscount.calculateDiscountAmount(date, menus));

@@ -1,7 +1,7 @@
 package christmas;
 
 import christmas.domain.DecemberDate;
-import christmas.domain.menu.Menus;
+import christmas.domain.menu.OrderRepository;
 import christmas.domain.Reservation;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -17,7 +17,7 @@ public class ChristmasController {
     private static Reservation initReservation() {
         OutputView.printWelcomeMessage();
         DecemberDate date = initDecemberDate();
-        Menus menus = initMenus();
+        OrderRepository menus = initMenus();
         return Reservation.of(date, menus);
     }
 
@@ -25,8 +25,8 @@ public class ChristmasController {
         return getValidValue(() -> new DecemberDate(InputView.readDate()));
     }
 
-    private static Menus initMenus() {
-        return getValidValue(() -> Menus.createByString(InputView.readMenu()));
+    private static OrderRepository initMenus() {
+        return getValidValue(() -> OrderRepository.createByString(InputView.readMenu()));
     }
 
     private static <T> T getValidValue(Supplier<T> inputMethod) {

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.DecemberDate;
 import christmas.domain.menu.Menu;
-import christmas.domain.menu.Menus;
+import christmas.domain.menu.OrderRepository;
 import christmas.domain.Money;
 import christmas.domain.Reservation;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class TotalDiscountTest {
     @Test
     void dDayAndWeekdayAndSpecialDiscount() {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
-        Menus menus = new Menus(menuIntegerMap);
+        OrderRepository menus = new OrderRepository(menuIntegerMap);
         menuIntegerMap.put(Menu.MUSHROOM_CREAM_SOUP, 2);
         menuIntegerMap.put(Menu.SEA_FOOD_PASTA, 5);
         menuIntegerMap.put(Menu.ICE_CREAM, 2);
@@ -35,7 +35,7 @@ public class TotalDiscountTest {
     void dDayAndWeekendAndSpecialAndGiftDiscount() {
         DecemberDate date = new DecemberDate(9);
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
-        Menus menus = new Menus(menuIntegerMap);
+        OrderRepository menus = new OrderRepository(menuIntegerMap);
         menuIntegerMap.put(Menu.MUSHROOM_CREAM_SOUP, 2);
         menuIntegerMap.put(Menu.SEA_FOOD_PASTA, 5);
         menuIntegerMap.put(Menu.RED_WINE, 1);
@@ -52,7 +52,7 @@ public class TotalDiscountTest {
     @Test
     void lessThanMinDiscountPrice() {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
-        Menus menus = new Menus(menuIntegerMap);
+        OrderRepository menus = new OrderRepository(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
         Reservation reservation = Reservation.of(date, menus);
 
@@ -70,7 +70,7 @@ public class TotalDiscountTest {
         menuIntegerMap.put(Menu.T_BORN_STAKE, 2);
         menuIntegerMap.put(Menu.TAPAS, 2);
         menuIntegerMap.put(Menu.CHAMPAGNE, 1);
-        Menus menus = new Menus(menuIntegerMap);
+        OrderRepository menus = new OrderRepository(menuIntegerMap);
         DecemberDate date = new DecemberDate(3);
         Reservation reservation = Reservation.of(date, menus);
 
@@ -83,7 +83,7 @@ public class TotalDiscountTest {
     @Test
     void dDayAndWeekendAndSpecialAndGiftTotalMoney() {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
-        Menus menus = new Menus(menuIntegerMap);
+        OrderRepository menus = new OrderRepository(menuIntegerMap);
         menuIntegerMap.put(Menu.MUSHROOM_CREAM_SOUP, 2);
         menuIntegerMap.put(Menu.CAESAR_SALAD, 3);
         menuIntegerMap.put(Menu.RED_WINE, 1);
@@ -101,7 +101,7 @@ public class TotalDiscountTest {
     @Test
     void lessThanMinDiscountTotalMoney() {
         Map<Menu, Integer> menuIntegerMap = new HashMap<>();
-        Menus menus = new Menus(menuIntegerMap);
+        OrderRepository menus = new OrderRepository(menuIntegerMap);
         menuIntegerMap.put(Menu.ICE_CREAM, 1);
         DecemberDate date = new DecemberDate(3);
         Reservation reservation = Reservation.of(date, menus);

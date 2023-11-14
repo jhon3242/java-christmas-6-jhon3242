@@ -3,21 +3,21 @@ package christmas.domain;
 import christmas.domain.discount.DiscountRepository;
 import christmas.domain.discount.GiftDiscount;
 import christmas.domain.menu.Menu;
-import christmas.domain.menu.Menus;
+import christmas.domain.menu.OrderRepository;
 
 public class Reservation {
 
     private final DiscountRepository discountRepository;
     private final DecemberDate decemberDate;
-    private final Menus menus;
+    private final OrderRepository menus;
 
-    private Reservation(DecemberDate decemberDate, Menus menus) {
+    private Reservation(DecemberDate decemberDate, OrderRepository menus) {
         this.decemberDate = decemberDate;
         this.menus = menus;
         this.discountRepository = DiscountRepository.calculateDiscount(decemberDate, menus);
     }
 
-    public static Reservation of(DecemberDate decemberDate, Menus menus) {
+    public static Reservation of(DecemberDate decemberDate, OrderRepository menus) {
         return new Reservation(decemberDate, menus);
     }
 
@@ -54,7 +54,7 @@ public class Reservation {
         return decemberDate;
     }
 
-    public Menus getMenus() {
+    public OrderRepository getMenus() {
         return menus;
     }
 }

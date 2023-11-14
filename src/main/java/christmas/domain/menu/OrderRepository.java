@@ -4,11 +4,11 @@ import christmas.domain.Money;
 import java.util.Collections;
 import java.util.Map;
 
-public record Menus(Map<Menu, Integer> menuRepository) {
+public record OrderRepository(Map<Menu, Integer> menuRepository) {
 
-    public static Menus createByString(String menuString) {
-        Map<Menu, Integer> menuRepository = MenusParser.parse(menuString);
-        return new Menus(menuRepository);
+    public static OrderRepository createByString(String menuString) {
+        Map<Menu, Integer> menuRepository = OrderParser.parse(menuString);
+        return new OrderRepository(menuRepository);
     }
 
     public int findTotalCountByFoodType(FoodType foodType) {

@@ -18,7 +18,7 @@ import static christmas.message.ViewMessage.OUTPUT_WELCOME_MESSAGE;
 import christmas.domain.DecemberDate;
 import christmas.domain.EventBadge;
 import christmas.domain.menu.Menu;
-import christmas.domain.menu.Menus;
+import christmas.domain.menu.OrderRepository;
 import christmas.domain.Money;
 import christmas.domain.discount.DiscountRepository;
 import christmas.message.ExceptionMessage;
@@ -38,7 +38,7 @@ public class OutputView {
         System.out.println(ExceptionMessage.ERROR_PREFIX + exception.getMessage());
     }
 
-    public static void printOrderMenus(Menus menus) {
+    public static void printOrderMenus(OrderRepository menus) {
         System.out.println(OUTPUT_TITLE_ORDER_MENU);
         menus.menuRepository()
                         .forEach(OutputView::printMenu);

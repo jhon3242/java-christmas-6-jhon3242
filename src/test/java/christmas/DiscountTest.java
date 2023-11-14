@@ -8,7 +8,7 @@ import christmas.domain.discount.SpecialDiscount;
 import christmas.domain.discount.WeekDiscount;
 import christmas.domain.DecemberDate;
 import christmas.domain.menu.Menu;
-import christmas.domain.menu.Menus;
+import christmas.domain.menu.OrderRepository;
 import christmas.domain.Money;
 import java.util.HashMap;
 import java.util.List;
@@ -24,12 +24,12 @@ public class DiscountTest {
     private static final DecemberDate WEEKEND = new DecemberDate(1);
     private static final DecemberDate WEEKDAY = new DecemberDate(3);
 
-    private static Menus makeMenusByList(List<Menu> menus) {
+    private static OrderRepository makeMenusByList(List<Menu> menus) {
         Map<Menu, Integer> menuRepository = new HashMap<>();
         menus.forEach(menu ->
                 menuRepository.put(menu, menuRepository.getOrDefault(menu, 0) + 1)
         );
-        return new Menus(menuRepository);
+        return new OrderRepository(menuRepository);
     }
 
     @DisplayName("크리스마스 디데이 이벤트 할인 금액 계산이 문제 없다.")
@@ -62,7 +62,7 @@ public class DiscountTest {
     @DisplayName("주말에만 메인 메뉴 하나 당 2023원 할인이 적용된다.")
     @ParameterizedTest
     @MethodSource("weekendDiscountProvider")
-    void weekendDiscount(Menus menus, DecemberDate date, Money expected) {
+    void weekendDiscount(OrderRepository menus, DecemberDate date, Money expected) {
         Money actual = WeekDiscount.calculateDiscountAmount(date, menus);
 
         assertThat(actual).isEqualTo(expected);
@@ -79,7 +79,7 @@ public class DiscountTest {
     @DisplayName("평일에만 디저트 메뉴 하나 당 2023원 할인이 적용된다.")
     @ParameterizedTest
     @MethodSource("weekdayDiscountProvider")
-    void weekdayDiscount(Menus menus, DecemberDate date, Money expected) {
+    void weekdayDiscount(OrderRepository menus, DecemberDate date, Money expected) {
         Money actual = WeekDiscount.calculateDiscountAmount(date, menus);
 
         assertThat(actual).isEqualTo(expected);
