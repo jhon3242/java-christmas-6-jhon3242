@@ -5,8 +5,8 @@ import christmas.domain.Money;
 
 public class DDayDiscount {
     public static final String NAME = "크리스마스 디데이 할인";
-    private static final DecemberDate startDate = new DecemberDate(1);
-    private static final DecemberDate endDate = new DecemberDate(25);
+    private static final DecemberDate START_DATE = new DecemberDate(1);
+    private static final DecemberDate END_DATE = new DecemberDate(25);
     private static final int DISCOUNT_AMOUNT = 1000;
 
     public static Money calculateDiscountAmount(DecemberDate reserveDate) {
@@ -17,10 +17,10 @@ public class DDayDiscount {
     }
 
     private static boolean isValidateDate(DecemberDate date) {
-        return date.isLessThan(startDate) || date.isMoreThan(endDate);
+        return date.isLessThan(START_DATE) || date.isMoreThan(END_DATE);
     }
 
     private static int calculateAdditionalAmount(DecemberDate date) {
-        return (date.dateAmount() - startDate.dateAmount()) * 100;
+        return (date.dateAmount() - START_DATE.dateAmount()) * 100;
     }
 }

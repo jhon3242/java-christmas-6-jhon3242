@@ -24,13 +24,13 @@ public class InputView {
         return Integer.parseInt(inputValue);
     }
 
-    public static void validateNull(String inputValue) {
+    private static void validateNull(String inputValue) {
         if (Objects.isNull(inputValue)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DATE);
         }
     }
 
-    public static void validateBlank(String inputValue) {
+    private static void validateBlank(String inputValue) {
         if (inputValue.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DATE);
         }

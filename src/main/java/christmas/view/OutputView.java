@@ -86,11 +86,11 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printDiscountLog(String key, Money discount) {
+    private static void printDiscountLog(String discountName, Money discount) {
         if (discount.isZero()) {
             return;
         }
-        System.out.printf(OUTPUT_FORMAT_DISCOUNT, key, OUTPUT_FORMAT_MONEY.format(discount.amount()));
+        System.out.printf(OUTPUT_FORMAT_DISCOUNT, discountName, OUTPUT_FORMAT_MONEY.format(discount.amount()));
     }
 
     public static void printTotalDiscountMoney(Money totalDiscountMoney) {
