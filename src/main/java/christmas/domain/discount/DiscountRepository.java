@@ -5,7 +5,6 @@ import christmas.domain.menu.Menu;
 import christmas.domain.menu.OrderRepository;
 import christmas.domain.Money;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -15,13 +14,13 @@ public class DiscountRepository {
     private final Map<String, Money> discountRepository;
 
     private DiscountRepository(DecemberDate date, OrderRepository menus) {
-        Map<String, Money> discountResult = new LinkedHashMap<>();
-        initDiscountRepository(date, menus, discountResult);
-        this.discountRepository = discountResult;
+        Map<String, Money> repository = new LinkedHashMap<>();
+        initDiscountRepository(date, menus, repository);
+        this.discountRepository = repository;
     }
 
-    public static DiscountRepository calculateDiscount(DecemberDate date, OrderRepository menus) {
-        return new DiscountRepository(date, menus);
+    public static DiscountRepository of(DecemberDate date, OrderRepository orderRepository) {
+        return new DiscountRepository(date, orderRepository);
     }
 
     private void initDiscountRepository(DecemberDate date, OrderRepository menus, Map<String, Money> discountResult) {

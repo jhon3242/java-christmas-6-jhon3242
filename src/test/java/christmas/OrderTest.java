@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class MenusTest {
+public class OrderTest {
 
     @DisplayName("메뉴의 형식이 올바른 경우 예외가 발생하지 않는다.")
     @ParameterizedTest

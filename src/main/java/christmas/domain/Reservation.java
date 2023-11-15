@@ -13,7 +13,7 @@ public class Reservation {
     private Reservation(DecemberDate decemberDate, OrderRepository orderRepository) {
         this.decemberDate = decemberDate;
         this.orderRepository = orderRepository;
-        this.discountRepository = DiscountRepository.calculateDiscount(decemberDate, orderRepository);
+        this.discountRepository = DiscountRepository.of(decemberDate, orderRepository);
     }
 
     public static Reservation of(DecemberDate decemberDate, OrderRepository menus) {
