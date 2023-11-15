@@ -52,7 +52,7 @@ public class OrderTest {
 
     @DisplayName("중복된 메뉴가 있는 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"타파스-1,타파스-1", "제로콜라-1,제로콜라-2"})
+    @ValueSource(strings = {"타파스-1,타파스-1", "제로콜라-1,제로콜라-2", "타파스-1,제로콜라-1,타파스-1"})
     void menusDuplicateMenu(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
                     OrderRepository.createByString(inputValue);
@@ -63,7 +63,7 @@ public class OrderTest {
 
     @DisplayName("메뉴의 수량이 올바르지 않는 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"타파스-0,제로콜라-1", "타파스-1,제로콜라-1.2", "타파스-1,제로콜라--10"})
+    @ValueSource(strings = {"타파스-0,제로콜라-1", "타파스-1,제로콜라-1.2", "타파스-1,제로콜라--10", "타파스-1,제로콜라-1 1"})
     void menusInvalidCountMenu(String inputValue) {
         Assertions.assertThatThrownBy(() -> {
                     OrderRepository.createByString(inputValue);

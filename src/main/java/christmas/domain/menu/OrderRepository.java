@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Map;
 
 public record OrderRepository(Map<Menu, Integer> repository) {
-
     public static OrderRepository createByString(String orderString) {
         Map<Menu, Integer> orderRepository = OrderParser.parse(orderString);
         return new OrderRepository(orderRepository);

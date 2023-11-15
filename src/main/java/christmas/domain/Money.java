@@ -3,7 +3,6 @@ package christmas.domain;
 import christmas.message.ExceptionMessage;
 
 public record Money(int amount) {
-
     public Money {
         validateAmount(amount);
     }
