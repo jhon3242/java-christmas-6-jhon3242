@@ -6,7 +6,6 @@ import christmas.domain.menu.Menu;
 import christmas.domain.menu.OrderRepository;
 
 public class Reservation {
-
     private final DiscountRepository discountRepository;
     private final DecemberDate decemberDate;
     private final OrderRepository orderRepository;

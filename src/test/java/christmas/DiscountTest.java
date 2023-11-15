@@ -10,6 +10,7 @@ import christmas.domain.DecemberDate;
 import christmas.domain.menu.Menu;
 import christmas.domain.menu.OrderRepository;
 import christmas.domain.Money;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class DiscountTest {
     private static final DecemberDate WEEKDAY = new DecemberDate(3);
 
     private static OrderRepository makeMenusByList(List<Menu> menus) {
-        Map<Menu, Integer> menuRepository = new HashMap<>();
+        Map<Menu, Integer> menuRepository = new EnumMap<>(Menu.class);
         menus.forEach(menu ->
                 menuRepository.put(menu, menuRepository.getOrDefault(menu, 0) + 1)
         );

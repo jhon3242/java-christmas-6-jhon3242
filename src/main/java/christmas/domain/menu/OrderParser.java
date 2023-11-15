@@ -9,6 +9,10 @@ public class OrderParser {
     private static final int MAX_MENU_COUNT = 20;
     private static final String DELIMITER_MENU_ORDER = ",";
 
+    private OrderParser() {
+        // 불필요한 인스턴스 생성 방지
+    }
+
     public static Map<Menu, Integer> parse(String inputValue) {
         Map<Menu, Integer> orderRepository = new EnumMap<>(Menu.class);
         Arrays.stream(inputValue.split(DELIMITER_MENU_ORDER))

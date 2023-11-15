@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public record Order(Menu menu, int count) {
     private static final String FORMAT_MENU_ORDER = "([가-힣]+)-(\\d+)";
-    private static final Pattern menuPattern = Pattern.compile(FORMAT_MENU_ORDER);
+    private static final Pattern PATTERN_MENU = Pattern.compile(FORMAT_MENU_ORDER);
     private static final int NAME_INDEX = 1;
     private static final int COUNT_INDEX = 2;
 
@@ -17,7 +17,7 @@ public record Order(Menu menu, int count) {
     }
 
     public static Order createByString(String menuString) {
-        Matcher matcher = menuPattern.matcher(menuString);
+        Matcher matcher = PATTERN_MENU.matcher(menuString);
         validateFormat(matcher);
         Menu menu = Menu.findByName(matcher.group(NAME_INDEX));
         int count = Integer.parseInt(matcher.group(COUNT_INDEX));
