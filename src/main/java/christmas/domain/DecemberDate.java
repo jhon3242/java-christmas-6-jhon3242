@@ -27,7 +27,7 @@ public record DecemberDate(int dateAmount) {
     }
 
     public boolean isMoreThan(DecemberDate date) {
-        return dateAmount <= date.dateAmount();
+        return dateAmount > date.dateAmount();
     }
 
     public boolean isWeekend() {

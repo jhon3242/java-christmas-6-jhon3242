@@ -10,13 +10,13 @@ public class DDayDiscount {
     private static final int DISCOUNT_AMOUNT = 1000;
 
     public static Money calculateDiscountAmount(DecemberDate reserveDate) {
-        if (isValidateDate(reserveDate)) {
-            return new Money(DISCOUNT_AMOUNT + calculateAdditionalAmount(reserveDate));
+        if (isInvalidateDate(reserveDate)) {
+            return new Money(0);
         }
-        return new Money(0);
+        return new Money(DISCOUNT_AMOUNT + calculateAdditionalAmount(reserveDate));
     }
 
-    private static boolean isValidateDate(DecemberDate date) {
+    private static boolean isInvalidateDate(DecemberDate date) {
         return date.isLessThan(START_DATE) || date.isMoreThan(END_DATE);
     }
 
